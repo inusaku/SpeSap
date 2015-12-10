@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 3d46fe8add16ea047be0549463ba73fb
+timeCreated: 1449590201
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - ThisAreaObject: {fileID: 186858, guid: f20e035f05d667c4ab36898b81f90abb, type: 2}
+  - CampObject: {fileID: 103980, guid: 75cdc57a08a099d468cce4705a208158, type: 2}
+  - Player: {fileID: 131640, guid: 1b7421bc6a1d1d147abf12ebfc5fb7ed, type: 2}
+  - Enemy: {fileID: 145774, guid: 1baae142558c43d478770536a4112576, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
