@@ -3,9 +3,10 @@ using System.Collections;
 
 public class PlayerAction : MonoBehaviour {
 	public float recast;
-	public float Atk;
+	private float Atk;
 	private GameObject enemyOb;
 	private GameObject kyotenOb;
+	public GameObject normalhitpar;
 	// Use this for initialization
 	void Start () {
 		Atk = this.GetComponent<PlayerStatus> ().Atk;
@@ -19,19 +20,23 @@ public class PlayerAction : MonoBehaviour {
 	{
 		if(enemyOb != null){
 			enemyOb.GetComponent<Enemy> ().life -= damege;
-		}else if(kyotenOb != null){
+			Instantiate(normalhitpar,enemyOb.transform.position,Quaternion.identity);
+		}
+		if(kyotenOb != null){
 			kyotenOb.GetComponent<SpaceLife> ().Life -= damege;
+			Instantiate(normalhitpar,kyotenOb.transform.position,Quaternion.identity);
 		}
 	}
 
-	void OnTriggerStay(Collider col)
+	void OnTriggerEnter(Collider col)
 	{
-		if(col.gameObject.tag == "enemy"){
+		if(col.gameObject.tag == "Enemy"){
+			Debug.Log("ENEMYHI");
 			enemyOb = col.gameObject;
 			InvokeRepeating ("Attack", recast,recast);
 			GetComponent<NavMeshAgent> ().speed = 0;
 		}
-		else if(col.gameObject.tag == "kyoten"){
+		if(col.gameObject.tag == "kyoten"){
 			kyotenOb = col.gameObject;
 			InvokeRepeating ("Attack", recast,recast);
 			GetComponent<NavMeshAgent> ().speed = 0;
