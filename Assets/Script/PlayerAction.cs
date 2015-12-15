@@ -22,7 +22,7 @@ public class PlayerAction : MonoBehaviour {
 			enemyOb.GetComponent<Enemy> ().life -= damege;
 			Instantiate(normalhitpar,enemyOb.transform.position,Quaternion.identity);
 		}
-		if(kyotenOb != null){
+		else if(kyotenOb != null){
 			kyotenOb.GetComponent<SpaceLife> ().Life -= damege;
 			Instantiate(normalhitpar,kyotenOb.transform.position,Quaternion.identity);
 		}
@@ -36,7 +36,7 @@ public class PlayerAction : MonoBehaviour {
 			InvokeRepeating ("Attack", recast,recast);
 			GetComponent<NavMeshAgent> ().speed = 0;
 		}
-		if(col.gameObject.tag == "kyoten"){
+		else if(col.gameObject.tag == "kyoten"){
 			kyotenOb = col.gameObject;
 			InvokeRepeating ("Attack", recast,recast);
 			GetComponent<NavMeshAgent> ().speed = 0;
