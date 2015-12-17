@@ -8,6 +8,8 @@ TagManager:
   - Enemy_EO
   - Enemy
   - kyoten
+  - Friend
+  - CCC
   layers:
   - Default
   - TransparentFX
