@@ -20,7 +20,7 @@ public class BaseCamp : MonoBehaviour//担当者：永江
 	private Slider playerSlider;
 	float enemySliVal;
 	float playerSliVal;
-	float playerHP;
+    float playerHP;
 	float enemyHP;
 	void Start()
     {
