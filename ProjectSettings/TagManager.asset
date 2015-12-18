@@ -10,6 +10,7 @@ TagManager:
   - kyoten
   - Friend
   - CCC
+  - Cursor
   layers:
   - Default
   - TransparentFX
