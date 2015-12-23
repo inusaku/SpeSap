@@ -6,7 +6,7 @@ public class PlayerStatus : MonoBehaviour {
 	public float MAXHP=0;
 	public float HP=0;
 	public float Atk=0;
-	
+	public float speed = 0;
 	// Use this for initialization
 	void Start () {
 	}
