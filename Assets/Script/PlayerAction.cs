@@ -33,11 +33,13 @@ public class PlayerAction : MonoBehaviour {
 		if(col.gameObject.tag == "Enemy"){
 			Debug.Log("ENEMYHI");
 			enemyOb = col.gameObject;
+			kyotenOb=null;
 			InvokeRepeating ("Attack", recast,recast);
 			GetComponent<NavMeshAgent> ().speed = 0;
 		}
 		else if(col.gameObject.tag == "kyoten"){
 			kyotenOb = col.gameObject;
+			enemyOb=null;
 			InvokeRepeating ("Attack", recast,recast);
 			GetComponent<NavMeshAgent> ().speed = 0;
 		}

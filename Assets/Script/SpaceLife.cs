@@ -5,9 +5,10 @@ public class SpaceLife : MonoBehaviour {
 	public Animator animator;
 	public string BoolName;
 	[SerializeField]
-	public float Life = 10;
+	public float Life;
 	// Use this for initialization
 	void Start () {
+		Life = 100;
 	}
 	
 	// Update is called once per frame
@@ -21,8 +22,19 @@ public class SpaceLife : MonoBehaviour {
 		yield return new WaitForSeconds(wait);//"Coroutine"Toyara Ga Hituyou Rashii Nanisore
 		//System.Threading.Thread.Sleep(1000);//Syori Ga Zenbu Tomaru. Kouiu Syori No Tameni Coroutine Ha Arurashii
 		Destroy(this.gameObject);
-		Debug.Log("Break out!");
-		//return null;
+
+		if(this.gameObject.name == "P_kyoten_A"){
+			Destroy (GameObject.Find("ui_P_kyoten_A"));
+		}
+		if(this.gameObject.name == "P_kyoten_B"){
+			Destroy (GameObject.Find("ui_P_kyoten_B"));
+		}
+		if(this.gameObject.name == "E_kyoten_A"){
+			Destroy (GameObject.Find("ui_E_kyoten_A"));
+		}
+		if(this.gameObject.name == "E_kyoten_B"){
+			Destroy (GameObject.Find("ui_E_kyoten_B"));
+		}
 	}
 }
 //This developed by Hyryu Hachino.

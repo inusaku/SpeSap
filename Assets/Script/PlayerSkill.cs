@@ -3,44 +3,48 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class PlayerSkill : MonoBehaviour {
-	//skill01
-	public GameObject Rangehitpar;
-	public GameObject skillPoint;
-	private float skillrecast01;
-	public float Maxskillrecast01;
-	public GameObject skillbutton;
-	//slill02
-	public GameObject FRangehitpar;
-	public GameObject FskillPoint;
-	private float skillrecast02;
-	public float Maxskillrecast02;
-	public GameObject Frontskillbutton;
+
+	public enum enumType{
+		Bomb,
+		AtkBuffer,
+		Heal,
+	}
+	public enumType TYPE;
 
 	// Use this for initialization
 	void Start () {
-	
+		switch (TYPE) {
+		case enumType.AtkBuffer:
+			AtkBuffer();
+			break;
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		skillrecast01-=1*Time.deltaTime;
-		skillrecast02-=1*Time.deltaTime;
-		if (skillrecast01 < 0) {
-			skillbutton.GetComponent<Button>().enabled=true;
+		switch (TYPE) {
+		case enumType.Bomb:
+			Bomb();
+			break;
+		case enumType.Heal:
+			Heal();
+			break;
 		}
-		if (skillrecast02 < 0) {
-			Frontskillbutton.GetComponent<Button>().enabled=true;
+	}
+	public void Bomb(){
+		if (gameObject.GetComponent<PlayerStatus> ().HP <= 0) {
+			Debug.Log ("BOMB");
 		}
-	
 	}
-	public void Skill01(){
-		Instantiate(Rangehitpar,skillPoint.transform.position,Rangehitpar.transform.rotation);
-		skillrecast01 = Maxskillrecast01;
-		skillbutton.GetComponent<Button>().enabled=false;
+	public void AtkBuffer(){
+		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+		foreach(GameObject player in players) {
+			player.GetComponent<PlayerStatus>().Atk*=2;
+		}
+		Debug.Log ("ATK!!");
 	}
-	public void Skill02(){
-		Instantiate(FRangehitpar,FskillPoint.transform.position,FRangehitpar.transform.rotation);
-		skillrecast02 = Maxskillrecast02;
-		Frontskillbutton.GetComponent<Button>().enabled=false;
+	public void Heal(){
+		Debug.Log ("HEAL!!");
 	}
+
 }
