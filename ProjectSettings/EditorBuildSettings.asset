@@ -7,3 +7,9 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scene/testPlayerMoving.unity
+  - enabled: 1
+    path: Assets/Resources/Prefab/takeda/Title.unity
+  - enabled: 1
+    path: Assets/Resources/Prefab/takeda/GameOver.unity
+  - enabled: 1
+    path: Assets/Resources/Prefab/takeda/Complete.unity
