@@ -69,14 +69,13 @@ public class Move_E_D : MonoBehaviour {
         
 
     }
-    void OnTriggerEnter(Collider col)
+    void OnTriggerStay(Collider col)
     {
 
         if (col.gameObject.tag == "Place")
         {
 
             speed = 0.0f;
-            
         }
     }
 
