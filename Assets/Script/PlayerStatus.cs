@@ -7,19 +7,15 @@ public class PlayerStatus : MonoBehaviour {
 	public float HP=0;
 	public float MAXATK = 0;
 	public float Atk=0;
-	public float speed=0;
-	private Slider playerSlider;
-	float playerSliVal;
+	public float speed=3.5f;
 	// Use this for initialization
+
 	void Start () {
-		playerSlider = GameObject.Find("playerHP").GetComponent<Slider>();
 		MAXATK = Atk;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		HP=Mathf.Clamp (HP,0, MAXHP);
-		playerSliVal = HP;
-		playerSlider.value = playerSliVal;
 	}
 }

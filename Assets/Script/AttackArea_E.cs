@@ -26,7 +26,7 @@ public class AttackArea_E : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
 			isDamage = true;
-			if(timer > 10){
+			if(timer > 3){
 				other.GetComponent<PlayerStatus>().HP -= attack;
 				timer = 0;
 			}
