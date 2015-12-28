@@ -16,7 +16,7 @@ public class Move : MonoBehaviour {
 	void Update () {
 		if (Input.GetMouseButtonDown(0)&&moveset==true){
 			ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			if (Physics.Raycast(ray, out hit, 10000f)){
+			if (Physics.Raycast(ray, out hit, 1000f)){
 				GetComponent<NavMeshAgent> ().speed = speed;
 				agent.SetDestination(hit.point);
 				moveset=false;
