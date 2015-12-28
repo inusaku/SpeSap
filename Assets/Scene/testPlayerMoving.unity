@@ -364,7 +364,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35ca2a7f59e0d95449a43ab92ac8a417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
 --- !u!195 &109870589
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -477,6 +476,7 @@ MonoBehaviour:
   MAXHP: 50
   HP: 50
   Atk: 10
+  speed: 0
 --- !u!114 &109870596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,14 +488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63bf44b5b8563c843b6aff1dc2c8d43b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rangehitpar: {fileID: 110342, guid: 519e93709950e1c41971f6285b347433, type: 2}
-  skillPoint: {fileID: 621955810}
-  Maxskillrecast01: 10
-  skillbutton: {fileID: 32872600}
-  FRangehitpar: {fileID: 197730, guid: aec6cf9f4e785d1499cfca788c66839b, type: 2}
-  FskillPoint: {fileID: 1420630438}
-  Maxskillrecast02: 5
-  Frontskillbutton: {fileID: 1281539103}
+  TYPE: 0
 --- !u!1 &122331536
 GameObject:
   m_ObjectHideFlags: 0
@@ -1226,11 +1219,11 @@ Prefab:
       objectReference: {fileID: 1943637928}
     - target: {fileID: 22494628, guid: b81d37845e617564badfd6d3ac923cad, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22494628, guid: b81d37845e617564badfd6d3ac923cad, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b81d37845e617564badfd6d3ac923cad, type: 2}
