@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scene/testPlayerMoving.unity
+    path: Assets/Scene/mainScene/Title.unity
   - enabled: 1
-    path: Assets/Resources/Prefab/takeda/Title.unity
+    path: Assets/Scene/mainScene/staffScene.unity
   - enabled: 1
-    path: Assets/Resources/Prefab/takeda/GameOver.unity
+    path: Assets/Scene/mainScene/stageSelect.unity
   - enabled: 1
-    path: Assets/Resources/Prefab/takeda/Complete.unity
+    path: Assets/Scene/mainScene/Battle.unity
