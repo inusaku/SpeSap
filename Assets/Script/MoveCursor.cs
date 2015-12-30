@@ -14,7 +14,7 @@ public class MoveCursor : MonoBehaviour {
 	void Update () {
 		if (Input.GetMouseButtonDown (0)) {
 			clickPosition=Input.mousePosition;
-			clickPosition.z=86f;
+			clickPosition.z=64f;
 			Instantiate(prefab,Camera.main.ScreenToWorldPoint(clickPosition),prefab.transform.rotation);
 
 		}
