@@ -8,6 +8,7 @@ public class PlayerStatus : MonoBehaviour {
 	public float MAXATK = 0;
 	public float Atk=0;
 	public float speed=3.5f;
+	public int cost=0;
 	// Use this for initialization
 
 	void Start () {

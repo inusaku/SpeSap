@@ -5,7 +5,7 @@ public class Move : MonoBehaviour {
 	private NavMeshAgent agent;
 	private RaycastHit hit;
 	private Ray ray;
-	private bool moveset;
+	public bool moveset;
 	private float speed;
 	
 	void Start () {
