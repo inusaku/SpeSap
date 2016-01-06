@@ -13,15 +13,6 @@ public class MoveCursor : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-<<<<<<< HEAD
-		if (Input.GetMouseButtonDown (0)) {
-			clickPosition=Input.mousePosition;
-			clickPosition.z = 64f;
-			Instantiate(prefab,Camera.main.ScreenToWorldPoint(clickPosition),prefab.transform.rotation);
-=======
->>>>>>> origin/nepia
-
-
 		if (Input.GetMouseButtonDown (0)) {
 			//clickPosition=Input.mousePosition;
 			//clickPosition.z=64f;
