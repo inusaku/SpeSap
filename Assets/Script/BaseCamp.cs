@@ -14,7 +14,7 @@ public class BaseCamp : MonoBehaviour//担当者：永江
     private Vector2 m_MaxNumber;            //InterbalとNumberの最大値を保存しておくためのVector2です
     private float m_Counter;                //拠点占拠ポイントをカウント(加算)して使用するためのfloatです
     private int m_PlayerNumber;             //Playerの種類(右側(1) or 左側(2)　|　Player(1) or Enemy(2)　等々の種類分け)です
-    private int m_MaxPoint;               //拠点占拠ポイントの最大値(試験運用用に[public]を用意してありますが、
+    public int m_MaxPoint;               //拠点占拠ポイントの最大値(試験運用用に[public]を用意してありますが、
                                             //細かく決まった場合は[private]のみにして、コンストラクタで指定する予定です)
 	private Slider enemySlider;
 	private Slider playerSlider;
