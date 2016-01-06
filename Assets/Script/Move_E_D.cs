@@ -3,9 +3,9 @@ using System.Collections;
 
 public class Move_E_D : MonoBehaviour {
     public Transform player;    //プレイヤーを代入
+    public Transform Place;
     public float speed = 3; //移動速度
     public float limitDistance = 1000f; //敵キャラクターがどの程度近づいてくるか設定(この値以下には近づかない）
-    private Transform Place;
     private CharacterController controller;
 
     private bool isGround = false;
@@ -14,14 +14,15 @@ public class Move_E_D : MonoBehaviour {
     void Start()
     {
         //Playerオブジェクトを検索し、参照を代入
-        player = GameObject.FindGameObjectWithTag("Player").transform;
         Place = GameObject.FindWithTag("Place").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         controller = (CharacterController)GetComponent("CharacterController");
     }
 
     //毎フレームに一度
     void Update()
     {
+        Vector3 placePos = Place.position;
         Vector3 playerPos = player.position;                 //プレイヤーの位置
         Vector3 direction = playerPos - transform.position; //方向と距離を求める。
         float distance = direction.sqrMagnitude;            //directionから距離要素だけを取り出す。
@@ -41,7 +42,10 @@ public class Move_E_D : MonoBehaviour {
 
             //プレイヤーとの距離が制限値未満（近づき過ぎ）なので、後退する。
             transform.position = transform.position - (direction * speed * Time.deltaTime);
+            speed = 0f;
         }
+
+    
 
         //プレイヤーの方を向く
         transform.rotation = Quaternion.LookRotation(direction);
@@ -75,8 +79,14 @@ public class Move_E_D : MonoBehaviour {
         if (col.gameObject.tag == "Place")
         {
 
-            speed = 0.0f;
+            speed = 3.0f;
             
+        }
+        if (col.gameObject.tag == "Player")
+        {
+
+            speed = 3.0f;
+
         }
     }
 

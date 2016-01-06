@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recast: 5
-  Atk: 10
+  normalhitpar: {fileID: 0}
 --- !u!114 &109870595
 MonoBehaviour:
   m_ObjectHideFlags: 0

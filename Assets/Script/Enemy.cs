@@ -4,8 +4,7 @@ using System.Collections;
 public class Enemy : MonoBehaviour {
     public float life = 100;
     public float HP = 100;
-    public float speed1 = 0.1f;
-    public float speed2 = 0.2f;
+
 
 
 	// Use this for initialization
@@ -23,8 +22,7 @@ public class Enemy : MonoBehaviour {
 
     public void Dead()
     {
-        speed1 = 0f;
-        speed2 = 0f;
+       
 		OnDestroy ();
     }
 

@@ -4,6 +4,7 @@ using System.Collections;
 
 public class Move_EO : MonoBehaviour {
     private Transform target;
+    private GameObject player;
     private Vector3 vec = Vector3.zero;
     private CharacterController controller;
     EnemyO enemyO;
@@ -27,7 +28,8 @@ public class Move_EO : MonoBehaviour {
         Vector3 direction = transform.position;
         float distance = direction.sqrMagnitude;
         direction = direction.normalized;
-        direction.y = 0f;
+        direction.y = 0f;                                 
+
         if (controller.isGrounded)
         {
             vec.y = 0;
@@ -52,16 +54,18 @@ public class Move_EO : MonoBehaviour {
 
         }
         
+        
     }
 
-    void OnTriggerStay(Collider col)
+    /*void OnTriggerStay(Collider col)
     {
         if (col.gameObject.tag == "Place")
         {
             enemyO.speed1 = 0f;
             enemyO.speed2 = 0f;
         }
-    }
+       
+    }*/
 
     void OnTriggerExit(Collider col)
     {
@@ -71,11 +75,11 @@ public class Move_EO : MonoBehaviour {
             enemyO.speed2 = 0.0f;
 
         }
-        if (col.gameObject.tag == "Enemy_EO")
+       /*if (col.gameObject.tag == "Enemy_EO")
         {
             enemyO.speed1 = 0.02f;
             enemyO.speed2 = 0.02f;
-        }
+        }*/
     }
 
 
