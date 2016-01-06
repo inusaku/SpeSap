@@ -24,6 +24,7 @@ public class MoveCursor : MonoBehaviour {
 			Instantiate(prefab,hit.point+new Vector3(0,1,0),prefab.transform.rotation);
 				if(hit.collider.gameObject.tag=="kyoten"){
 					menu.SetActive(true);
+					GetComponent<PlayerGeneration>().kyotenpos=hit.transform.position;
 					Debug.Log("kyotenn");
 				}
 			}
