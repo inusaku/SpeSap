@@ -18,7 +18,7 @@ public class SpaceLife : MonoBehaviour {
 		}
 	}
 	IEnumerator del(float wait){
-		animator.SetBool(BoolName,true);
+//		animator.SetBool(BoolName,true);
 		yield return new WaitForSeconds(wait);//"Coroutine"Toyara Ga Hituyou Rashii Nanisore
 		//System.Threading.Thread.Sleep(1000);//Syori Ga Zenbu Tomaru. Kouiu Syori No Tameni Coroutine Ha Arurashii
 		Destroy(this.gameObject);

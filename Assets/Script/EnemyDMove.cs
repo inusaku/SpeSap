@@ -11,15 +11,19 @@ public class EnemyDMove : MonoBehaviour {
 
     private bool isEnabled = false;
     void start()
-    {
-        target1= GameObject.FindGameObjectWithTag("Player").transform; ;
-    }
+    {}
 
     // Update is called once per frame
     void Update()
     {
-       CharacterController controller = GetComponent<CharacterController>();
-       Vector3 moveDirection = Vector3.zero;
+		if(target1 == null){
+			target1 = GameObject.Find ("Player").transform;
+		}
+		if(target2 == null){
+			target2 = GameObject.FindWithTag("Place").transform;
+		}
+        CharacterController controller = GetComponent<CharacterController>();
+        Vector3 moveDirection = Vector3.zero;
         Vector3 playerPos = target1.position;                 //プレイヤーの位置
         Vector3 direction = playerPos - transform.position; //方向と距離を求める。
         float distance = direction.sqrMagnitude;            //directionから距離要素だけを取り出す。
@@ -44,9 +48,9 @@ public class EnemyDMove : MonoBehaviour {
         }
         else
         {
-                Vector3 target2Direction = target2.transform.position;
-                target2Direction.y = 0;
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target2Direction - transform.position), Time.time * 0.1f);
+            Vector3 target2Direction = target2.transform.position;
+            target2Direction.y = 0;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target2Direction - transform.position), Time.time * 0.1f);
             Quaternion rotate = Quaternion.LookRotation(target2.position - transform.position);
             rotate.x = rotate.z = 0;
             transform.rotation = rotate;

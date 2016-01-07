@@ -31,9 +31,10 @@ public class BaseCamp : MonoBehaviour//担当者：永江
         m_NowProduct = null;
         m_Counter = 0;
         m_PlayerNumber = 0;
-
-		enemySlider = GameObject.Find("E_kyotenHP").GetComponent<Slider>();
-		playerSlider = GameObject.Find("P_kyotenHP").GetComponent<Slider>();
+		if(this.gameObject.name == "kyoten_A"){
+			enemySlider = GameObject.Find("ui_P_kyotenHP_A").GetComponent<Slider>();
+			playerSlider = GameObject.Find("ui_E_kyotenHP_A").GetComponent<Slider>();
+		}
 		enemySliVal = 15;
 		playerSliVal = 15;
 		playerHP = 15;
@@ -45,7 +46,7 @@ public class BaseCamp : MonoBehaviour//担当者：永江
 		if (playerHP > 20f) {
 			GetComponent<Renderer> ().material.color = Color.blue;
 		} else if (playerHP > 10f && playerHP < 20f) {
-			GetComponent<Renderer> ().material.color = Color.green;
+			GetComponent<Renderer> ().material.color = Color.white;
 		} else if(playerHP > 0f && playerHP < 10f){
 			GetComponent<Renderer> ().material.color = Color.red;
 		}
