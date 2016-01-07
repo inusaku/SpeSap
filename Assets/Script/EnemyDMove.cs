@@ -4,18 +4,23 @@ using System.Collections;
 public class EnemyDMove : MonoBehaviour {
     //public GameObject target1;
     //public GameObject target2;
+	public NavMeshAgent agent;
     public Transform target1;
     public Transform target2;
     float speed = 2.0f;
     float gravity = 100.0f;
 
-    private bool isEnabled = false;
+    public bool isEnabled = false;
     void start()
-    {}
+	{
+	}
 
     // Update is called once per frame
     void Update()
     {
+		if(agent == null){
+			agent = this.gameObject.GetComponent<NavMeshAgent>();	
+		}
 		if(target1 == null){
 			target1 = GameObject.Find ("Player").transform;
 		}
@@ -56,9 +61,8 @@ public class EnemyDMove : MonoBehaviour {
             transform.rotation = rotate;
 
             moveDirection += transform.forward * 1;
-                moveDirection.y -= gravity * Time.deltaTime;
-                controller.Move(moveDirection * Time.deltaTime * speed);
-            
+            moveDirection.y -= gravity * Time.deltaTime;
+			agent.SetDestination(target2.transform.position);            
 
         }
     }

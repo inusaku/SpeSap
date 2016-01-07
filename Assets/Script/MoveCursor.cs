@@ -6,9 +6,10 @@ public class MoveCursor : MonoBehaviour {
 	private GameObject cursor;
 	public GameObject menu;
 	private Vector3 clickPosition;
+	static public string myname;
 	// Use this for initialization
 	void Start () {
-	
+		myname = null;
 	}
 	
 	// Update is called once per frame
@@ -20,10 +21,10 @@ public class MoveCursor : MonoBehaviour {
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			if(Physics.Raycast(ray,out hit)){
 			Instantiate(prefab,hit.point+new Vector3(0,1,0),prefab.transform.rotation);
-				if(hit.collider.gameObject.tag=="kyoten"){
+				if(hit.collider.gameObject.tag=="kyoten" && hit.collider.gameObject.name != "E_kyoten_A"){
+					myname = hit.collider.gameObject.name;
 					menu.SetActive(true);
-					GetComponent<PlayerGeneration>().kyotenpos=hit.transform.position;
-					Debug.Log("kyotenn");
+					//GetComponent<PlayerGeneration>().kyotenpos=hit.transform.position;
 				}
 			}
 		}

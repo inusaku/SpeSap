@@ -30,6 +30,7 @@ public class SpaceLife : MonoBehaviour {
 			Destroy (GameObject.Find("ui_P_kyoten_B"));
 		}
 		if(this.gameObject.name == "E_kyoten_A"){
+			gameManager.isClear = true;
 			Destroy (GameObject.Find("ui_E_kyoten_A"));
 		}
 		if(this.gameObject.name == "E_kyoten_B"){
