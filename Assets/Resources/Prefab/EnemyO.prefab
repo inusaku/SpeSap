@@ -30,8 +30,9 @@ GameObject:
   - 23: {fileID: 2308428}
   - 143: {fileID: 14310916}
   - 114: {fileID: 11466176}
-  - 114: {fileID: 11465648}
   - 114: {fileID: 11444738}
+  - 114: {fileID: 11496644}
+  - 114: {fileID: 11476686}
   m_Layer: 0
   m_Name: EnemyO
   m_TagString: Enemy_EO
@@ -120,19 +121,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BC: {fileID: 6509910}
   AttackArea: {fileID: 113346}
---- !u!114 &11465648
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 199490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80fbc34ae97f41647b4dc9167296309f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
-  limitDistance: 100
 --- !u!114 &11465986
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -158,8 +146,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 40
   HP: 40
-  speed1: .0500000007
-  speed2: .0500000007
+--- !u!114 &11476686
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea329d82d7643d643a260132b39029ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basecamp: {fileID: 11456398, guid: 24e7bc915ae472b49891d824780503ed, type: 2}
+  BaseCamp: {fileID: 142784, guid: 24e7bc915ae472b49891d824780503ed, type: 2}
+--- !u!114 &11496644
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0158f20cb463d946baa17b7d8fa7b25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 454590, guid: d04a6e99917c07c4f94afa67a07b34f8, type: 2}
+  target2: {fileID: 427256, guid: dd9eebfd289674b4b9f3bd1601b3f675, type: 2}
 --- !u!135 &13558438
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -208,6 +220,23 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: be9f32e8fac56b24593ba2b63b86304c, type: 2}
+    - target: {fileID: 0}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 454590, guid: d04a6e99917c07c4f94afa67a07b34f8, type: 2}
+    - target: {fileID: 0}
+      propertyPath: target2
+      value: 
+      objectReference: {fileID: 427256, guid: dd9eebfd289674b4b9f3bd1601b3f675, type: 2}
+    - target: {fileID: 0}
+      propertyPath: basecamp
+      value: 
+      objectReference: {fileID: 11456398, guid: 24e7bc915ae472b49891d824780503ed,
+        type: 2}
+    - target: {fileID: 0}
+      propertyPath: BaseCamp
+      value: 
+      objectReference: {fileID: 142784, guid: 24e7bc915ae472b49891d824780503ed, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 199490}
