@@ -51,7 +51,7 @@ public class PlayerSkill : MonoBehaviour {
 	public void AtkBuffer(){
 		GameObject[] players = GameObject.FindGameObjectsWithTag ("Player");
 				foreach (GameObject player in players) {
-				player.GetComponent<PlayerStatus> ().Atk *= 2.1f;
+				player.GetComponent<PlayerStatus> ().Atk *= 1.1f;
 			player.GetComponent<PlayerSkill>().bufftimer=30;
 			buffset=false;
 				}
