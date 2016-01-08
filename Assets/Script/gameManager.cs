@@ -12,7 +12,7 @@ public class gameManager : MonoBehaviour {
 		if(isClear == true){
 			timer += Time.deltaTime;
 			if(timer > 2f){
-				Application.LoadLevel("Select");
+				Application.LoadLevel("stageSelect");
 			}
 		}
 	}
