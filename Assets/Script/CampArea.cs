@@ -21,7 +21,7 @@ public class CampArea : MonoBehaviour//担当者：永江
 
     void Update()
     {
-		Enemy = GameObject.Find ("Enemy_ED(Clone)");
+		Enemy = GameObject.Find ("EnemyO(Clone)");
 		Player = GameObject.Find ("Player");
         DistanceP_C();
         DistanceE_C();

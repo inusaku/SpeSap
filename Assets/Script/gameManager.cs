@@ -2,20 +2,6 @@
 using System.Collections;
 
 public class gameManager : MonoBehaviour {
-	static public bool isClear;
-	private float timer;
-	void Start(){
-		timer = 0f;
-		isClear = false;
-	}
-	void Update(){
-		if(isClear == true){
-			timer += Time.deltaTime;
-			if(timer > 2f){
-				Application.LoadLevel("Select");
-			}
-		}
-	}
 /*	private float timer;
 	private bool isEnd;
 	private bool isStart;
