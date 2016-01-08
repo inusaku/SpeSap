@@ -2,78 +2,85 @@
 using System.Collections;
 
 public class Move_Friend : MonoBehaviour {
-    private Transform target;
-    private Vector3 vec = Vector3.zero;
-    public CharacterController controller;
-    Friend friend;
-    Vector3 F_Position;
-    Vector3 F_Rotation;
-    public float speed = 3;
-    public float limitdistance = 1000f;
+    public Transform target;
+    public float speed = 3; //移動速度
+    public float limitDistance = 1000f; //敵キャラクターがどの程度近づいてくるか設定(この値以下には近づかない）
+    private CharacterController controller;
 
-	// Use this for initialization
-	void Start () {
-        target = GameObject.FindWithTag("Place").transform;
-        friend = GetComponent<Friend>();
+    private bool isGround = false;
+
+    //ゲーム開始時に一度
+    void Start()
+    {
+        //Playerオブジェクトを検索し、参照を代入
+        target = GameObject.FindGameObjectWithTag("Enemy_EO").transform;
         controller = (CharacterController)GetComponent("CharacterController");
-	
-	}
+    }
 
-    // Update is called once per frame
+    //毎フレームに一度
     void Update()
     {
-        vec.y += Physics.gravity.y * Time.deltaTime;
-        controller.Move(vec * Time.deltaTime);
-        Vector3 direction = transform.position;
-        float distance = direction.sqrMagnitude;
-        direction = direction.normalized;
-        direction.y = 0f;
-        if (controller.isGrounded)
-        {
-            vec.y = 0;
-        }
-        var newRotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.position + transform.position), friend.speed1).eulerAngles;
-        transform.rotation = Quaternion.LookRotation(transform.position - (target.position - new Vector3(0, target.position.y - 0.4f, 0)));
-        transform.position -= transform.forward * friend.speed2;
+        Vector3 targetPos = target.position;                 //プレイヤーの位置
+        Vector3 direction = targetPos - transform.position; //方向と距離を求める。
+        float distance = direction.sqrMagnitude;            //directionから距離要素だけを取り出す。
+        direction = direction.normalized;                   //単位化（距離要素を取り除く）
+        direction.y = 0f;                                   //後に敵の回転制御に使うためY軸情報を消去。これにより敵上下を向かなくなる。
 
-        if (distance >= limitdistance)
+        //プレイヤーの距離が一定以上でなければ、敵キャラクターはプレイヤーへ近寄ろうとしない
+        if (distance >= limitDistance)
         {
+
+            //プレイヤーとの距離が制限値以上なので普通に近づく
             transform.position = transform.position + (direction * speed * Time.deltaTime);
+
         }
+        else if (distance < limitDistance)
+        {
+
+            //プレイヤーとの距離が制限値未満（近づき過ぎ）なので、後退する。
+            transform.position = transform.position - (direction * speed * Time.deltaTime);
+            speed = 0f;
+        }
+
+
+
+        //プレイヤーの方を向く
+        transform.rotation = Quaternion.LookRotation(direction);
+
+        //重力落下処理（プレイヤーの距離関係なく下に移動する）
+        Vector3 rayPos = transform.position;
+        rayPos.y -= 1f;
+
+        //地面衝突判定処理。（今回は直接座標を操作しているため実装したが、直接座標操作はあまり好ましくないため
+        //後でUnityのキャラクター操作機能を用いた敵キャラクターの実装を紹介する。）
+        if (!Physics.Raycast(rayPos, Vector3.down, 0.5f))
+        {
+            //地面からわずかに浮くのは、わざとである。（キャラクター操作機能（CharacterControllerを用いれば起きない））
+            transform.position = transform.position + (Vector3.down * 9.8f * Time.deltaTime);
+        }
+        //地面判定線を見れるようにする
+        Debug.DrawRay(rayPos, Vector3.down * 1 / 10);
+
+        //敵のY座標が-5以下の時自身を削除
+        if (transform.position.y <= -5f)
+        {
+            Destroy(gameObject);
+        }
+
+
+
     }
     void OnTriggerEnter(Collider col)
     {
-        if(col.gameObject.tag=="Place")
+
+        if (col.gameObject.tag == "Enemy_EO")
         {
-            friend.speed1 = 0f;
-            friend.speed2 = 0f;
+
+            speed = 3.0f;
+
         }
     }
-    void OnTriggerStay(Collider col)
-    {
-        if(col.gameObject.tag=="Place")
-        {
-            friend.speed1 = 0f;
-            friend.speed2 = 0f;
-        }
-    }
-    void OnTriggerExit(Collider col)
-    {
-        if(col.gameObject.tag=="Place")
-        {
-            friend.speed1 = 0f;
-            friend.speed2 = 0f;
-        }
-        if(col.gameObject.tag=="Friend")
-        {
-            friend.speed1 = 0.02f;
-            friend.speed2 = 0.02f;
-        }
-    }
-
-
-
-
 
 }
+
 

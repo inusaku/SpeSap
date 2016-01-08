@@ -14,7 +14,7 @@ public class BaseCamp : MonoBehaviour//担当者：永江
     private Vector2 m_MaxNumber;            //InterbalとNumberの最大値を保存しておくためのVector2です
     private float m_Counter;                //拠点占拠ポイントをカウント(加算)して使用するためのfloatです
     private int m_PlayerNumber;             //Playerの種類(右側(1) or 左側(2)　|　Player(1) or Enemy(2)　等々の種類分け)です
-    private int m_MaxPoint;               //拠点占拠ポイントの最大値(試験運用用に[public]を用意してありますが、
+    public int m_MaxPoint;               //拠点占拠ポイントの最大値(試験運用用に[public]を用意してありますが、
                                             //細かく決まった場合は[private]のみにして、コンストラクタで指定する予定です)
 	private Slider enemySlider;
 	private Slider playerSlider;
@@ -22,6 +22,8 @@ public class BaseCamp : MonoBehaviour//担当者：永江
 	float playerSliVal;
     float playerHP;
 	float enemyHP;
+	public float speed;
+
 	void Start()
     {
         m_MaxNumber.x = m_Interbal;
@@ -31,9 +33,19 @@ public class BaseCamp : MonoBehaviour//担当者：永江
         m_NowProduct = null;
         m_Counter = 0;
         m_PlayerNumber = 0;
-
-		enemySlider = GameObject.Find("E_kyotenHP").GetComponent<Slider>();
-		playerSlider = GameObject.Find("P_kyotenHP").GetComponent<Slider>();
+		speed = 0;
+		if(this.gameObject.name == "kyoten_A"){
+			enemySlider = GameObject.Find("ui_P_kyotenHP_A").GetComponent<Slider>();
+			playerSlider = GameObject.Find("ui_E_kyotenHP_A").GetComponent<Slider>();
+		}
+		if(this.gameObject.name == "kyoten_B"){
+			enemySlider = GameObject.Find("ui_P_kyotenHP_B").GetComponent<Slider>();
+			playerSlider = GameObject.Find("ui_E_kyotenHP_B").GetComponent<Slider>();
+		}
+		if(this.gameObject.name == "kyoten_C"){
+			enemySlider = GameObject.Find("ui_P_kyotenHP_C").GetComponent<Slider>();
+			playerSlider = GameObject.Find("ui_E_kyotenHP_C").GetComponent<Slider>();
+		}
 		enemySliVal = 15;
 		playerSliVal = 15;
 		playerHP = 15;
@@ -44,10 +56,13 @@ public class BaseCamp : MonoBehaviour//担当者：永江
     {
 		if (playerHP > 20f) {
 			GetComponent<Renderer> ().material.color = Color.blue;
+			this.tag = "kyoten";
 		} else if (playerHP > 10f && playerHP < 20f) {
-			GetComponent<Renderer> ().material.color = Color.green;
+			GetComponent<Renderer> ().material.color = Color.white;
+			this.tag = "Place";
 		} else if(playerHP > 0f && playerHP < 10f){
 			GetComponent<Renderer> ().material.color = Color.red;
+			this.tag = "Place";
 		}
         CampPointChecker();
         MakerChecker();
@@ -56,9 +71,13 @@ public class BaseCamp : MonoBehaviour//担当者：永江
 
 	public void GetCampPlayer()//拠点占拠ポイント加算(Player)
 	{
-		m_Counter += 2 * Time.deltaTime;
-		enemyHP -= 2 * Time.deltaTime;
-		playerHP += 2 * Time.deltaTime;
+		m_Counter += speed * Time.deltaTime;
+		if(enemyHP >= 0f){
+			enemyHP -= speed * Time.deltaTime;
+		}
+		if(playerHP <= 30f){
+			playerHP += speed * Time.deltaTime;
+		}
 		enemySliVal = enemyHP;
 		playerSliVal = playerHP;
 		enemySlider.value = enemySliVal;
@@ -68,9 +87,13 @@ public class BaseCamp : MonoBehaviour//担当者：永江
 
     public void GetCampEnemy()//拠点占拠ポイント加算(Enemy)
     {
-		m_Counter -= 1 * Time.deltaTime;
-		enemyHP += 1 * Time.deltaTime;
-		playerHP -= 1 * Time.deltaTime;
+		m_Counter += speed * Time.deltaTime;
+		if (enemyHP <= 30f) {
+			enemyHP -= speed * Time.deltaTime;
+		}
+		if (playerHP >= 0f) {
+			playerHP += speed * Time.deltaTime;
+		}
 		enemySliVal = enemyHP;
 		playerSliVal = playerHP;
 		enemySlider.value = enemySliVal;
@@ -139,18 +162,16 @@ public class BaseCamp : MonoBehaviour//担当者：永江
     {
         if (m_PlayerNumber == 0) { return; }
 
-        if (m_PlayerNumber == 1)
-        {
-            m_NowProduct = Instantiate(m_actersPrefab_Player);
-        }
-        else if (m_PlayerNumber == 2)
-        {
-            m_NowProduct = Instantiate(m_actersPrefab_Enemy);
-            //print("acters = Enemyです");//デバッグ用
-        }
+        if (m_PlayerNumber == 1) {
+		} else if (m_PlayerNumber == 2) {
+		//	m_NowProduct = Instantiate (m_actersPrefab_Enemy);
+			//print("acters = Enemyです");//デバッグ用
+		} else {
+			this.tag = "place";
+		}
 
         //召還位置を(Random.Range.(こ, こ))の二つの値の間のランダムから決定する(X, Y, Z の各種設定可能)ための記述です
-        m_NowProduct.GetComponent<Rigidbody>().position = new Vector3(Random.Range(-1f, 1f),
+/*        m_NowProduct.GetComponent<Rigidbody>().position = new Vector3(Random.Range(-1f, 1f),
                                                                       Random.Range(0.5f, 0.5f),
                                                                       Random.Range(-1f, 1f));
 
@@ -159,5 +180,22 @@ public class BaseCamp : MonoBehaviour//担当者：永江
                                                                       Random.Range(0.5f, 0.5f),
                                                                       Random.Range(-5f, 5f));
         //print("actersを生産しました");//デバッグ用
-    }
+*/    }
+	void OnTriggerEnter(Collider col){
+		if(col.gameObject.tag == "Player"){
+			speed ++;
+		}
+		if(col.gameObject.tag == "Enemy"){
+			speed --;
+		}
+	} 
+	void OnTriggerExit(Collider col){
+		if(col.gameObject.tag == "Player"){
+			speed --;
+		}
+		if(col.gameObject.tag == "Enemy"){
+			speed ++;
+		}
+	} 
+
 }
