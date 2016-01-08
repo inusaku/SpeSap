@@ -14,8 +14,8 @@ public class CampArea : MonoBehaviour//担当者：永江
 
     void Start()
     {
-        ThisAreaObject.transform.position = CampObject.transform.position;//位置の中心をCampObjectに強制的にあわせます
-        ThisAreaObject.transform.localScale = new Vector3(AreaSize, 0.2f, AreaSize);//半径＝入力値の半分です
+//        ThisAreaObject.transform.position = CampObject.transform.position;//位置の中心をCampObjectに強制的にあわせます
+//        ThisAreaObject.transform.localScale = new Vector3(AreaSize, 0.2f, AreaSize);//半径＝入力値の半分です
         //このスクリプトをつけたオブジェクトのScaleはAreaSizeと同じものにしておくととてもわかりやすくなると思います
     }
 

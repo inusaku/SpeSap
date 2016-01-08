@@ -58,7 +58,7 @@ public class BaseCamp : MonoBehaviour//担当者：永江
 			GetComponent<Renderer> ().material.color = Color.blue;
 			this.tag = "kyoten";
 		} else if (playerHP > 10f && playerHP < 20f) {
-			GetComponent<Renderer> ().material.color = Color.white;
+			GetComponent<Renderer> ().material.color = Color.green;
 			this.tag = "Place";
 		} else if(playerHP > 0f && playerHP < 10f){
 			GetComponent<Renderer> ().material.color = Color.red;
