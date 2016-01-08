@@ -38,10 +38,12 @@ public class PlayerAction : MonoBehaviour {
 			GetComponent<NavMeshAgent> ().speed = 0;
 		}
 		else if(col.gameObject.tag == "kyoten"){
-			kyotenOb = col.gameObject;
-			enemyOb=null;
-			InvokeRepeating ("Attack", recast,recast);
-			GetComponent<NavMeshAgent> ().speed = 0;
+			if(col.gameObject.name == "E_kyoten_A"){
+				kyotenOb = col.gameObject;
+				enemyOb=null;
+				InvokeRepeating ("Attack", recast,recast);
+				GetComponent<NavMeshAgent> ().speed = 0;
+			}
 		}
 	}
 	void OnTriggerExit(Collider col)
