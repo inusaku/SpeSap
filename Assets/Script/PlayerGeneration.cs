@@ -23,19 +23,20 @@ public class PlayerGeneration : MonoBehaviour {
 	public void Player01(){
 		if (cost.GetComponent<CostSC> ().cost>=player01.gameObject.GetComponent<PlayerStatus>().cost) {
 			Vector3 pos = new Vector3 (x, kyotenpos.y, y);
-
 			Instantiate (player01, pos, player01.transform.rotation);
-			menu.SetActive (false);
+
 			cost.GetComponent<CostSC> ().cost -= player01.gameObject.GetComponent<PlayerStatus>().cost;
 		}
+		menu.SetActive (false);
 	}
 	public void Player02(){
 		if (cost.GetComponent<CostSC> ().cost>=player02.gameObject.GetComponent<PlayerStatus>().cost) {
 			Vector3 pos = new Vector3 (x, kyotenpos.y, y);
 			
 			Instantiate (player02, pos, player02.transform.rotation);
-			menu.SetActive (false);
+
 			cost.GetComponent<CostSC> ().cost -= player02.gameObject.GetComponent<PlayerStatus>().cost;
 		}
+		menu.SetActive (false);
 	}
 }
