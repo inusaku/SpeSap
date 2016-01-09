@@ -9,30 +9,20 @@ public class DestroyCursor : MonoBehaviour {
 	private float dis;
 	// Use this for initialization
 	void Start () {
-		dis = 0;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		clickPosition=Input.mousePosition;
-		clickPosition.z=86f;
-		position = Camera.main.ScreenToWorldPoint(clickPosition);
-		float dis = Vector3.Distance (transform.position,position) - 44f;
-		if(dis >= 5f){
-			dis = 5f;
-		}else if(dis <= -5f){
-			dis = 5f;
-		}
-		Debug.Log (dis);
-		if (position.x > position.z) {
-			scalesize = position.x;
-		} else {
-			scalesize=position.z;
-		}
 
 		if (Input.GetMouseButton (0)) {
+			float mouse_x_delta = Input.GetAxis("Mouse X");
+			float mouse_y_delta = Input.GetAxis("Mouse Y");
+			dis += mouse_x_delta + mouse_y_delta;
+			dis = Mathf.Clamp (dis, -5, 5);
 			gameObject.transform.localScale = new Vector3(dis * 10f,gameObject.transform.localScale.y,dis * 10f);
 		}
+
 	if (Input.GetMouseButtonUp (0)) {
 			Destroy(this.gameObject);
 			dis = 0;
