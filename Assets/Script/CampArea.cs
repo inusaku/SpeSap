@@ -21,8 +21,8 @@ public class CampArea : MonoBehaviour//担当者：永江
 
     void Update()
     {
-		Enemy = GameObject.Find ("Enemy_ED(Clone)");
-		Player = GameObject.Find ("Player");
+		Enemy = GameObject.Find ("Enemy");
+		Player = GameObject.Find ("Player_HP");
         DistanceP_C();
         DistanceE_C();
         Checker();
@@ -59,12 +59,12 @@ public class CampArea : MonoBehaviour//担当者：永江
         if (dis_2 <= AreaSize / 2)
         {
             m_Enemy = true;
-            print("Enemyがtrueになりました");
+//            print("Enemyがtrueになりました");
         }
         else if (dis_2 > AreaSize / 2)
         {
             m_Enemy = false;
-            print("Enemyがfalseになりました");
+//            print("Enemyがfalseになりました");
         }
     }
 

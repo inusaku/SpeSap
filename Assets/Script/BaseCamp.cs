@@ -66,7 +66,7 @@ public class BaseCamp : MonoBehaviour//担当者：永江
 		}
         CampPointChecker();
         MakerChecker();
-        print("現在のカウンターは[" + m_Counter + "]");//デバッグ用
+        //print("現在のカウンターは[" + m_Counter + "]");//デバッグ用
     }
 
 	public void GetCampPlayer()//拠点占拠ポイント加算(Player)
@@ -98,7 +98,7 @@ public class BaseCamp : MonoBehaviour//担当者：永江
 		playerSliVal = playerHP;
 		enemySlider.value = enemySliVal;
 		playerSlider.value = playerSliVal;
-		//print("Enemy側に加算しました");//デバッグ用
+//		print("Enemy側に加算しました");//デバッグ用
     }
 
     private void CampPointChecker()//拠点ポイントのチェック(±MaxPoint / 3点を超えると獲得)(-MaxPoint <= 0 <= MaxPoint)

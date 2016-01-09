@@ -22,7 +22,7 @@ public class MoveCursor : MonoBehaviour {
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			if(Physics.Raycast(ray,out hit)){
 			
-				if(hit.collider.gameObject.tag=="kyoten"){
+				if(hit.collider.gameObject.tag=="kyoten" && hit.collider.gameObject.name != "E_kyoten_A"){
 					menu.SetActive(true);
 					GetComponent<PlayerGeneration>().kyotenpos=hit.transform.position;
 					Debug.Log("kyotenn");
