@@ -7,7 +7,10 @@ public class ui_HPSystem: MonoBehaviour {
 	public Transform target;
 	public GameObject targetOb;
 	private int enemyCount;
+	private int frame;
+
 	void Start () {
+		frame = 0;
 		this.transform.parent = GameObject.Find ("Canvas").transform;
 		if (this.gameObject.name == "ui_playerHP" || this.gameObject.name == "ui_enemyHP" || this.gameObject.name == "ui_P_kyotenHP_A" || this.gameObject.name == "ui_E_kyotenHP_A" || this.gameObject.name == "ui_P_kyotenHP_B" || this.gameObject.name == "ui_E_kyotenHP_B" || this.gameObject.name == "ui_P_kyotenHP_C" || this.gameObject.name == "ui_E_kyotenHP_C") {
 		} else {
@@ -30,7 +33,7 @@ public class ui_HPSystem: MonoBehaviour {
 					GameObject.Find ("Player").GetComponent<HP_hantei>().isHP = true;
 					this.GetComponent<Slider> ().value = 50f;
 				}
-			}else if(target != null){
+			}else if(target != null && frame > 3){
 				targetOb = GameObject.Find ("Player_HP");
 				var screenPos = GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(target.position);
 				var localPos = Vector2.zero;
@@ -116,6 +119,8 @@ public class ui_HPSystem: MonoBehaviour {
 				this.GetComponent<Slider>().value -= 0.5f * Time.deltaTime;
 			}
 		}
+
+		frame ++;
 
 		if(target == null){
 			this.GetComponent<Slider> ().value = 0f;

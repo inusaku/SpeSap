@@ -21,7 +21,7 @@ public class CameraMove : MonoBehaviour {
 	if (Input.GetMouseButton (1)) {
 			float mouse_x_delta = Input.GetAxis("Mouse X");
 			float mouse_y_delta = Input.GetAxis("Mouse Y");
-			pos+=new Vector3(mouse_x_delta,Scrollwheel,-mouse_y_delta);
+			pos+=new Vector3(mouse_x_delta,Scrollwheel,mouse_y_delta);
 		}
 		transform.position = pos;
 	}
