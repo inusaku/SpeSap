@@ -20,6 +20,7 @@ public class ui_HPSystem: MonoBehaviour {
 	}
 	
 	void Update () {
+		this.transform.localScale = new Vector3(1,1,1);
 		enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
 		//PlayerHP
 		if(this.gameObject.name == "ui_playerHP"){

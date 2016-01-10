@@ -10,9 +10,10 @@ public class EnemyDMove : MonoBehaviour {
     float speed = 2.0f;
     float gravity = 100.0f;
 
-    public bool isEnabled = false;
+	public bool isEnabled;
     void start()
 	{
+//		isEnabled = true;
 	}
 
     // Update is called once per frame
@@ -58,7 +59,7 @@ public class EnemyDMove : MonoBehaviour {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target2Direction - transform.position), Time.time * 0.1f);
             Quaternion rotate = Quaternion.LookRotation(target2.position - transform.position);
             rotate.x = rotate.z = 0;
-            transform.rotation = rotate;
+//            transform.rotation = rotate;
 
             moveDirection += transform.forward * 1;
             moveDirection.y -= gravity * Time.deltaTime;
