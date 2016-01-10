@@ -21,7 +21,7 @@ public class CampArea : MonoBehaviour//担当者：永江
 
     void Update()
     {
-		Enemy = GameObject.Find ("Enemy");
+		Enemy = GameObject.Find ("Enemy_HP");
 		Player = GameObject.Find ("Player_HP");
         DistanceP_C();
         DistanceE_C();
