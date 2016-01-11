@@ -11,23 +11,21 @@ public class ui_HPSystem: MonoBehaviour {
 
 	void Start () {
 		frame = 0;
-		this.transform.parent = GameObject.Find ("Canvas").transform;
 		if (this.gameObject.name == "ui_playerHP" || this.gameObject.name == "ui_enemyHP" || this.gameObject.name == "ui_P_kyotenHP_A" || this.gameObject.name == "ui_E_kyotenHP_A" || this.gameObject.name == "ui_P_kyotenHP_B" || this.gameObject.name == "ui_E_kyotenHP_B" || this.gameObject.name == "ui_P_kyotenHP_C" || this.gameObject.name == "ui_E_kyotenHP_C") {
 		} else {
 			this.GetComponent<Slider> ().value = 1f;
 		}
-		if(this.name == "ui_playerHP(Clone)"){
+		if (this.name == "ui_playerHP(Clone)") {
 			this.name = "ui_playerHP";
-			this.transform.parent = GameObject.Find("Canvas").transform;
-		}
-		if(this.name == "ui_enemyHP(Clone)"){
+			this.transform.parent = GameObject.Find ("Canvas_HP").transform;
+		} else if (this.name == "ui_enemyHP(Clone)") {
 			this.name = "ui_enemyHP";
-			this.transform.parent = GameObject.Find("Canvas").transform;
+			this.transform.parent = GameObject.Find ("Canvas_HP").transform;
 		}
 	}
 	
 	void Update () {
-		this.transform.localScale = new Vector3(1,1,1);
+		this.transform.localScale = new Vector3(0.75f,0.75f,0.75f);
 		enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
 		//PlayerHP
 		if(this.gameObject.name == "ui_playerHP"){
@@ -72,7 +70,7 @@ public class ui_HPSystem: MonoBehaviour {
 			targetOb = GameObject.Find ("P_kyoten_A");
 			var screenPos = GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(target.position);
 			var localPos = Vector2.zero;
-			this.transform.position = new Vector3(screenPos.x, screenPos.y + 50f, screenPos.z);
+			this.transform.position = new Vector3(screenPos.x, screenPos.y + 20f, screenPos.z);
 			if(GameObject.Find ("P_kyoten_A").GetComponent<SpaceLife> ().Life / 100 < this.GetComponent<Slider>().value){
 				this.GetComponent<Slider>().value -= 0.5f * Time.deltaTime;
 			}
@@ -125,7 +123,7 @@ public class ui_HPSystem: MonoBehaviour {
 			targetOb = GameObject.Find ("E_kyoten_A");
 			var screenPos = GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(target.position);
 			var localPos = Vector2.zero;
-			this.transform.position = new Vector3(screenPos.x, screenPos.y + 50f, screenPos.z);
+			this.transform.position = new Vector3(screenPos.x, screenPos.y + 20f, screenPos.z);
 			if(GameObject.Find ("E_kyoten_A").GetComponent<SpaceLife> ().Life / 100 < this.GetComponent<Slider>().value){
 				this.GetComponent<Slider>().value -= 0.5f * Time.deltaTime;
 			}

@@ -34,14 +34,14 @@ public class EnemySpawn : MonoBehaviour {
     }
     void Spawn()
     {
-		if (enemyCount <= 0){
+		if (enemyCount <= 50){
 	        for (int i = 0; i < count; i++)
 	        {
 	            float x = Random.Range(0f, 0f);
 	            float z = Random.Range(0f, 0f);
 	            Vector3 pos = new Vector3(x, 1f, z) + transform.position;
 	            GameObject.Instantiate(Enemy, pos, Quaternion.identity);
-				GameObject.Instantiate(enemyHP);
+				GameObject.Instantiate(enemyHP, new Vector3(10000,0,0), Quaternion.identity);
 	        }
 		}
     }

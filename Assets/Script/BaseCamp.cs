@@ -56,7 +56,15 @@ public class BaseCamp : MonoBehaviour//担当者：永江
     {
 		if (playerHP > 20f) {
 			GetComponent<Renderer> ().material.color = Color.blue;
-			this.tag = "kyoten";
+			if(this.gameObject.name == "kyoten_A"){
+				GameObject.Find("base_kyoten_A").tag = "kyoten";
+			}
+			if(this.gameObject.name == "kyoten_B"){
+				GameObject.Find("base_kyoten_B").tag = "kyoten";
+			}
+			if(this.gameObject.name == "kyoten_C"){
+				GameObject.Find("base_kyoten_C").tag = "kyoten";
+			}
 		} else if (playerHP > 10f && playerHP < 20f) {
 			GetComponent<Renderer> ().material.color = Color.green;
 			this.tag = "Place";
