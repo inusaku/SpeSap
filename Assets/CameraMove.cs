@@ -16,8 +16,8 @@ public class CameraMove : MonoBehaviour {
 		pos.y=Mathf.Clamp (pos.y, min.y, max.y);
 		pos.z=Mathf.Clamp (pos.z, min.z, max.z);
 
-		float Scrollwheel = Input.GetAxis("Mouse ScrollWheel");
-		gameObject.transform.position+=new Vector3(0,Scrollwheel,0);
+		float Scrollwheel = Input.GetAxis("Mouse ScrollWheel")*10;
+		pos+=new Vector3(0,Scrollwheel,0);
 	if (Input.GetMouseButton (1)) {
 			float mouse_x_delta = Input.GetAxis("Mouse X");
 			float mouse_y_delta = Input.GetAxis("Mouse Y");
