@@ -17,8 +17,8 @@ public class PlayerGeneration : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		x = UnityEngine.Random.Range (kyotenpos.x - 5, kyotenpos.x + 5);
-		y =UnityEngine.Random.Range (kyotenpos.z - 5, kyotenpos.z + 5);
+		x = UnityEngine.Random.Range (kyotenpos.x -5, kyotenpos.x+5);
+		y =UnityEngine.Random.Range (kyotenpos.z - 5, kyotenpos.z+5);
 
 	}
 	public void Player01(){
@@ -29,7 +29,6 @@ public class PlayerGeneration : MonoBehaviour {
 
 			cost.GetComponent<CostSC> ().cost -= player01.gameObject.GetComponent<PlayerStatus>().cost;
 		}
-		menu.SetActive (false);
 
 	}
 	public void Player02(){
@@ -41,6 +40,10 @@ public class PlayerGeneration : MonoBehaviour {
 
 			cost.GetComponent<CostSC> ().cost -= player02.gameObject.GetComponent<PlayerStatus>().cost;
 		}
+
+	}
+	public void close()
+	{
 		menu.SetActive (false);
 	}
 }
