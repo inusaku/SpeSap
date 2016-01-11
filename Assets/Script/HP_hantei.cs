@@ -20,8 +20,11 @@ public class HP_hantei : MonoBehaviour {
 	void Update () {
 		if(isHP == true && frame < 3){
 			frame ++;
-			if(frame > 1){
+			if(frame > 1 && this.name == "Player"){
 				this.name = "Player_HP";
+			}
+			if(frame > 1 && this.name == "Enemy"){
+				this.name = "Enemy_HP";
 			}
 		}
 	}

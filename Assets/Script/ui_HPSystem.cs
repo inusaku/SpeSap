@@ -7,7 +7,10 @@ public class ui_HPSystem: MonoBehaviour {
 	public Transform target;
 	public GameObject targetOb;
 	private int enemyCount;
+	private int frame;
+
 	void Start () {
+		frame = 0;
 		this.transform.parent = GameObject.Find ("Canvas").transform;
 		if (this.gameObject.name == "ui_playerHP" || this.gameObject.name == "ui_enemyHP" || this.gameObject.name == "ui_P_kyotenHP_A" || this.gameObject.name == "ui_E_kyotenHP_A" || this.gameObject.name == "ui_P_kyotenHP_B" || this.gameObject.name == "ui_E_kyotenHP_B" || this.gameObject.name == "ui_P_kyotenHP_C" || this.gameObject.name == "ui_E_kyotenHP_C") {
 		} else {
@@ -17,9 +20,14 @@ public class ui_HPSystem: MonoBehaviour {
 			this.name = "ui_playerHP";
 			this.transform.parent = GameObject.Find("Canvas").transform;
 		}
+		if(this.name == "ui_enemyHP(Clone)"){
+			this.name = "ui_enemyHP";
+			this.transform.parent = GameObject.Find("Canvas").transform;
+		}
 	}
 	
 	void Update () {
+		this.transform.localScale = new Vector3(1,1,1);
 		enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
 		//PlayerHP
 		if(this.gameObject.name == "ui_playerHP"){
@@ -29,7 +37,7 @@ public class ui_HPSystem: MonoBehaviour {
 					GameObject.Find ("Player").GetComponent<HP_hantei>().isHP = true;
 					this.GetComponent<Slider> ().value = 50f;
 				}
-			}else if(target != null){
+			}else if(target != null && frame > 3){
 				targetOb = GameObject.Find ("Player_HP");
 				var screenPos = GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(target.position);
 				var localPos = Vector2.zero;
@@ -41,14 +49,21 @@ public class ui_HPSystem: MonoBehaviour {
 			}
 		}
 		//EnemyHP
-		if(this.gameObject.name == "ui_enemyHP" && enemyCount >= 1){
-			target = GameObject.Find ("Enemy").transform;
-			targetOb = GameObject.Find ("Enemy");
-			var screenPos = GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(target.position);
-			var localPos = Vector2.zero;
-			this.transform.position = new Vector3(screenPos.x, screenPos.y + 12.5f, screenPos.z);
-			if(GameObject.Find ("Enemy").GetComponent<Enemy> ().life < this.GetComponent<Slider>().value * 2f){
-				this.GetComponent<Slider>().value -= 10f * Time.deltaTime;
+		if(this.gameObject.name == "ui_enemyHP"){
+			if(target == null && GameObject.Find ("Enemy") != null){
+				if(GameObject.Find ("Enemy").GetComponent<HP_hantei>().isHP == false){
+					target = GameObject.Find ("Enemy").transform;
+					GameObject.Find ("Enemy").GetComponent<HP_hantei>().isHP = true;
+					this.GetComponent<Slider> ().value = 50f;
+				}
+			}else if(target != null && frame > 3){
+				targetOb = GameObject.Find ("Enemy_HP");
+				var screenPos = GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(target.position);
+				var localPos = Vector2.zero;
+				this.transform.position = new Vector3(screenPos.x, screenPos.y + 20f, screenPos.z);
+				if(GameObject.Find ("Enemy_HP").GetComponent<Enemy> ().life < this.GetComponent<Slider>().value * 2f){
+					this.GetComponent<Slider>().value -= 10f * Time.deltaTime;
+				}
 			}
 		}
 
@@ -115,6 +130,8 @@ public class ui_HPSystem: MonoBehaviour {
 				this.GetComponent<Slider>().value -= 0.5f * Time.deltaTime;
 			}
 		}
+
+		frame ++;
 
 		if(target == null){
 			this.GetComponent<Slider> ().value = 0f;

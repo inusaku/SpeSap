@@ -197,5 +197,13 @@ public class BaseCamp : MonoBehaviour//担当者：永江
 			speed ++;
 		}
 	} 
-
+	public bool KyotenCheck()//Enemyの挙動用に、Enemy側が占拠しているかどうかをReturnするメソッドを追加しました(永江.1月9日)
+	{
+		if (m_Counter <= -14.3)//試験運用中に最後の拠点のm_Counterが[-14.68~~]で止まってしまうバグが発生していたためコレを追加しました。
+		{//仮にゲーム中にm_Counterが[-15]になりきらずとも、視覚的にゲージがMaxでしっかり占拠できている場合は次の拠点を狙います。
+			return true;
+		}
+		
+		return false;
+	}
 }
