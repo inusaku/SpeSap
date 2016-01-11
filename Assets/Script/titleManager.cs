@@ -8,6 +8,8 @@ public class titleManager : MonoBehaviour {
 	private bool isStaff;
 	public string stageSelect;
 	public string staffScene;
+	public AudioClip select;
+	private bool isSE;
 
 	// Use this for initialization
 	void Start () {
@@ -15,6 +17,7 @@ public class titleManager : MonoBehaviour {
 		isEnd = false;
 		isStart = false;
 		isStaff = false;
+		isSE = false;
 	}
 	
 	// Update is called once per frame
@@ -36,18 +39,30 @@ public class titleManager : MonoBehaviour {
 
 	public void end (){
 		if(isEnd == false && isStart == false && isStaff == false){
+			if(isSE == false){
+				isSE = true;
+				this.GetComponent<AudioSource> ().PlayOneShot (select);
+			}
 			isEnd = true;
 			GameObject.Find("ui_fead").GetComponent<Animator>().SetBool("isStart", true);
 		}
 	}
 	public void start (){
 		if(isEnd == false && isStart == false && isStaff == false){
+			if(isSE == false){
+				isSE = true;
+				this.GetComponent<AudioSource> ().PlayOneShot (select);
+			}
 			isStart = true;
 			GameObject.Find("ui_fead").GetComponent<Animator>().SetBool("isStart", true);
 		}
 	}
 	public void staff (){
 		if(isEnd == false && isStart == false && isStaff == false){
+			if(isSE == false){
+				isSE = true;
+				this.GetComponent<AudioSource> ().PlayOneShot (select);
+			}
 			isStaff = true;
 			GameObject.Find("ui_fead").GetComponent<Animator>().SetBool("isStart", true);
 		}

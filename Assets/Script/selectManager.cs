@@ -12,12 +12,15 @@ public class selectManager : MonoBehaviour {
 	public Sprite stage1;
 	public Sprite stage2;
 	public Sprite stage3;
+	public AudioClip select;
+	private bool isSE;
 	// Use this for initialization
 	void Start () {
 		num = 0;
 		timer = 0f;
 		isEnd = false;
 		isStart = false;
+		isSE = false;
 	}
 	
 	// Update is called once per frame
@@ -59,11 +62,19 @@ public class selectManager : MonoBehaviour {
 			isEnd = true;
 			GameObject.Find("ui_fead").GetComponent<Animator>().SetBool("isStart", true);
 		}
+		if(isSE == false){
+			isSE = true;
+			this.GetComponent<AudioSource> ().PlayOneShot (select);
+		}
 	}
 	public void start (){
 		if(isEnd == false && isStart == false){
 			isStart = true;
 			GameObject.Find("ui_fead").GetComponent<Animator>().SetBool("isStart", true);
+		}
+		if(isSE == false){
+			isSE = true;
+			this.GetComponent<AudioSource> ().PlayOneShot (select);
 		}
 	}
 	public void R (){
