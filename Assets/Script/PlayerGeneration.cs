@@ -25,7 +25,7 @@ public class PlayerGeneration : MonoBehaviour {
 		if (cost.GetComponent<CostSC> ().cost>=player01.gameObject.GetComponent<PlayerStatus>().cost) {
 			Vector3 pos = new Vector3 (x, kyotenpos.y, y);
 			Instantiate (player01, pos, player01.transform.rotation);
-			Instantiate (PlayerHP);
+			Instantiate (PlayerHP, new Vector3(10000,0,0), Quaternion.identity);
 
 			cost.GetComponent<CostSC> ().cost -= player01.gameObject.GetComponent<PlayerStatus>().cost;
 		}
@@ -36,7 +36,7 @@ public class PlayerGeneration : MonoBehaviour {
 			Vector3 pos = new Vector3 (x, kyotenpos.y, y);
 			
 			Instantiate (player02, pos, player02.transform.rotation);
-			Instantiate (PlayerHP);
+			Instantiate (PlayerHP, new Vector3(10000,0,0), Quaternion.identity);
 
 			cost.GetComponent<CostSC> ().cost -= player02.gameObject.GetComponent<PlayerStatus>().cost;
 		}
