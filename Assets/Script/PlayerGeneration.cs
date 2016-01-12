@@ -12,7 +12,8 @@ public class PlayerGeneration : MonoBehaviour {
 	private float y;
 	// Use this for initialization
 	void Start () {
-	
+//		cost = GameObject.Find ("cost_text");
+//		menu = GameObject.Find ("PlayerMenu");
 	}
 	
 	// Update is called once per frame
