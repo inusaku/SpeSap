@@ -161,13 +161,24 @@ public class EnemyEOMOVE : MonoBehaviour {
                 Quaternion rotate = Quaternion.LookRotation(place.position - transform.position);
                 rotate.x = rotate.z = 0;
                 transform.rotation = rotate;
+<<<<<<< HEAD
+=======
 
                 moveDirection += transform.forward * 0;
                 moveDirection.y -= gravity * Time.deltaTime;
                 controller.Move(moveDirection * Time.deltaTime * speed);
 
+>>>>>>> origin/MIRAI
+
+                moveDirection += transform.forward * 0;
+                moveDirection.y -= gravity * Time.deltaTime;
+                controller.Move(moveDirection * Time.deltaTime * speed);
+
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/MIRAI
             }
         }
     }

@@ -4,8 +4,12 @@ using System.Collections;
 public class EnemySpawn : MonoBehaviour {
     public GameObject Enemy;    //敵オブジェクト
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public GameObject enemyHP;
     public float count = 1;     //一度に何体のオブジェクトをスポーンさせるか
+=======
+    public float count = 5;     //一度に何体のオブジェクトをスポーンさせるか
+>>>>>>> origin/MIRAI
 =======
     public float count = 5;     //一度に何体のオブジェクトをスポーンさせるか
 >>>>>>> origin/MIRAI
