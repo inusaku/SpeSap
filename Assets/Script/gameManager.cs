@@ -4,7 +4,20 @@ using System.Collections;
 public class gameManager : MonoBehaviour {
 	static public bool isClear;
 	private float timer;
+	public GameObject stage01;
+	public GameObject stage02;
+	public GameObject stage03;
+
 	void Start(){
+		if(GameObject.Find("system").GetComponent<system>().stageNum == 1){
+			Instantiate(stage01);
+		}
+		if(GameObject.Find("system").GetComponent<system>().stageNum == 2){
+			Instantiate(stage02);
+		}
+		if(GameObject.Find("system").GetComponent<system>().stageNum == 3){
+			Instantiate(stage03);
+		}
 		timer = 0f;
 		isClear = false;
 	}

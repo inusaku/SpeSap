@@ -85,6 +85,15 @@ public class selectManager : MonoBehaviour {
 			GameObject.Find("ui_gameStart").GetComponent<Animator>().SetBool("isStart", true);
 			this.GetComponent<AudioSource> ().pitch = 0.75f;
 			this.GetComponent<AudioSource> ().PlayOneShot (select02);
+			if(num == 0){
+				GameObject.Find("system").GetComponent<system>().stageNum = 1;
+			}
+			if(num == 1){
+				GameObject.Find("system").GetComponent<system>().stageNum = 2;
+			}
+			if(num == 2){
+				GameObject.Find("system").GetComponent<system>().stageNum = 3;
+			}
 		}
 	}
 	public void R (){
