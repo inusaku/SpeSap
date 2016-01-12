@@ -6,10 +6,11 @@ public class FriendOKMove : MonoBehaviour
     GameObject target1;
     //GameObject target2;
 
-    float  speed = 1f;
+    float  speed = 2f;
     float gravity = 20f;
 
     private bool isPSW = false;
+    
 
     void Update()
     {
@@ -50,7 +51,11 @@ public class FriendOKMove : MonoBehaviour
         if (col.tag == "Enemy")
         {
             isPSW = true;
+<<<<<<< HEAD
 			target1 = col.gameObject;
+=======
+            target1 = col.gameObject;
+>>>>>>> origin/MIRAI
         }
 
     }

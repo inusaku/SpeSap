@@ -22,8 +22,12 @@ public class BaseCamp : MonoBehaviour//担当者：永江
 	float playerSliVal;
     float playerHP;
 	float enemyHP;
+<<<<<<< HEAD
 	public float speed;
 
+=======
+    public float speed;
+>>>>>>> origin/MIRAI
 	void Start()
     {
         m_MaxNumber.x = m_Interbal;
@@ -56,7 +60,15 @@ public class BaseCamp : MonoBehaviour//担当者：永江
     {
 		if (playerHP > 20f) {
 			GetComponent<Renderer> ().material.color = Color.blue;
-			this.tag = "kyoten";
+			if(this.gameObject.name == "kyoten_A"){
+				GameObject.Find("base_kyoten_A").tag = "kyoten";
+			}
+			if(this.gameObject.name == "kyoten_B"){
+				GameObject.Find("base_kyoten_B").tag = "kyoten";
+			}
+			if(this.gameObject.name == "kyoten_C"){
+				GameObject.Find("base_kyoten_C").tag = "kyoten";
+			}
 		} else if (playerHP > 10f && playerHP < 20f) {
 			GetComponent<Renderer> ().material.color = Color.green;
 			this.tag = "Place";
@@ -180,6 +192,7 @@ public class BaseCamp : MonoBehaviour//担当者：永江
                                                                       Random.Range(0.5f, 0.5f),
                                                                       Random.Range(-5f, 5f));
         //print("actersを生産しました");//デバッグ用
+<<<<<<< HEAD
 */    }
 	void OnTriggerEnter(Collider col){
 		if(col.gameObject.tag == "Player"){
@@ -206,4 +219,39 @@ public class BaseCamp : MonoBehaviour//担当者：永江
 		
 		return false;
 	}
+=======
+    }
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            speed++;
+        }
+        if (col.gameObject.tag == "Enemy")
+        {
+            speed--;
+        }
+    }
+    void OnTriggerExit(Collider col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            speed--;
+        }
+        if (col.gameObject.tag == "Enemy")
+        {
+            speed++;
+        }
+    }
+
+    public bool KyotenCheck()//Enemyの挙動用に、Enemy側が占拠しているかどうかをReturnするメソッドを追加しました(永江.1月9日)
+    {
+        if (m_Counter <= -14.3)//試験運用中に最後の拠点のm_Counterが[-14.68~~]で止まってしまうバグが発生していたためコレを追加しました。
+        {//仮にゲーム中にm_Counterが[-15]になりきらずとも、視覚的にゲージがMaxでしっかり占拠できている場合は次の拠点を狙います。
+            return true;
+        }
+
+        return false;
+    }
+>>>>>>> origin/MIRAI
 }

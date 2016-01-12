@@ -17,8 +17,8 @@ public class CostSC : MonoBehaviour {
 		costtext.text = "Cost:" + cost.ToString ();
 		timer += Time.deltaTime;
 		if(limit < timer){
-			if(cost < 100){
-				cost ++;
+			if(cost < 998){
+				cost += 2;
 			}
 			timer = 0f;
 		}

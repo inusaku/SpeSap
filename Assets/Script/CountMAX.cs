@@ -30,7 +30,7 @@ public class CountMAX : MonoBehaviour {
         transform.LookAt(nearObj.transform);
 
         //自分自身の位置から相対的に移動する
-        transform.Translate(Vector3.forward * 2.0f);
+        transform.Translate(Vector3.forward * 0.01f);
     }
 
     //指定されたタグの中で最も近いものを取得
@@ -72,7 +72,7 @@ public class CountMAX : MonoBehaviour {
                 transform.LookAt(nearObj.transform);
 
                 //自分自身の位置から相対的に移動する
-                transform.Translate(Vector3.forward * 2.0f);
+                transform.Translate(Vector3.forward * 0.01f);
 
             }
         }
