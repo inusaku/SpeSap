@@ -22,7 +22,12 @@ public class BaseCamp : MonoBehaviour//担当者：永江
 	float playerSliVal;
     float playerHP;
 	float enemyHP;
+<<<<<<< HEAD
     public float speed;
+=======
+	public float speed;
+
+>>>>>>> origin/CHIBA
 	void Start()
     {
         m_MaxNumber.x = m_Interbal;
@@ -32,9 +37,19 @@ public class BaseCamp : MonoBehaviour//担当者：永江
         m_NowProduct = null;
         m_Counter = 0;
         m_PlayerNumber = 0;
-
-		enemySlider = GameObject.Find("E_kyotenHP").GetComponent<Slider>();
-		playerSlider = GameObject.Find("P_kyotenHP").GetComponent<Slider>();
+		speed = 0;
+		if(this.gameObject.name == "kyoten_A"){
+			enemySlider = GameObject.Find("ui_P_kyotenHP_A").GetComponent<Slider>();
+			playerSlider = GameObject.Find("ui_E_kyotenHP_A").GetComponent<Slider>();
+		}
+		if(this.gameObject.name == "kyoten_B"){
+			enemySlider = GameObject.Find("ui_P_kyotenHP_B").GetComponent<Slider>();
+			playerSlider = GameObject.Find("ui_E_kyotenHP_B").GetComponent<Slider>();
+		}
+		if(this.gameObject.name == "kyoten_C"){
+			enemySlider = GameObject.Find("ui_P_kyotenHP_C").GetComponent<Slider>();
+			playerSlider = GameObject.Find("ui_E_kyotenHP_C").GetComponent<Slider>();
+		}
 		enemySliVal = 15;
 		playerSliVal = 15;
 		playerHP = 15;
@@ -45,21 +60,36 @@ public class BaseCamp : MonoBehaviour//担当者：永江
     {
 		if (playerHP > 20f) {
 			GetComponent<Renderer> ().material.color = Color.blue;
+			if(this.gameObject.name == "kyoten_A"){
+				GameObject.Find("base_kyoten_A").tag = "kyoten";
+			}
+			if(this.gameObject.name == "kyoten_B"){
+				GameObject.Find("base_kyoten_B").tag = "kyoten";
+			}
+			if(this.gameObject.name == "kyoten_C"){
+				GameObject.Find("base_kyoten_C").tag = "kyoten";
+			}
 		} else if (playerHP > 10f && playerHP < 20f) {
 			GetComponent<Renderer> ().material.color = Color.green;
+			this.tag = "Place";
 		} else if(playerHP > 0f && playerHP < 10f){
 			GetComponent<Renderer> ().material.color = Color.red;
+			this.tag = "Place";
 		}
         CampPointChecker();
         MakerChecker();
-        print("現在のカウンターは[" + m_Counter + "]");//デバッグ用
+        //print("現在のカウンターは[" + m_Counter + "]");//デバッグ用
     }
 
 	public void GetCampPlayer()//拠点占拠ポイント加算(Player)
 	{
-		m_Counter += 2 * Time.deltaTime;
-		enemyHP -= 2 * Time.deltaTime;
-		playerHP += 2 * Time.deltaTime;
+		m_Counter += speed * Time.deltaTime;
+		if(enemyHP >= 0f){
+			enemyHP -= speed * Time.deltaTime;
+		}
+		if(playerHP <= 30f){
+			playerHP += speed * Time.deltaTime;
+		}
 		enemySliVal = enemyHP;
 		playerSliVal = playerHP;
 		enemySlider.value = enemySliVal;
@@ -69,14 +99,18 @@ public class BaseCamp : MonoBehaviour//担当者：永江
 
     public void GetCampEnemy()//拠点占拠ポイント加算(Enemy)
     {
-		m_Counter -= 1 * Time.deltaTime;
-		enemyHP += 1 * Time.deltaTime;
-		playerHP -= 1 * Time.deltaTime;
+		m_Counter += speed * Time.deltaTime;
+		if (enemyHP <= 30f) {
+			enemyHP -= speed * Time.deltaTime;
+		}
+		if (playerHP >= 0f) {
+			playerHP += speed * Time.deltaTime;
+		}
 		enemySliVal = enemyHP;
 		playerSliVal = playerHP;
 		enemySlider.value = enemySliVal;
 		playerSlider.value = playerSliVal;
-		//print("Enemy側に加算しました");//デバッグ用
+//		print("Enemy側に加算しました");//デバッグ用
     }
 
     private void CampPointChecker()//拠点ポイントのチェック(±MaxPoint / 3点を超えると獲得)(-MaxPoint <= 0 <= MaxPoint)
@@ -140,18 +174,16 @@ public class BaseCamp : MonoBehaviour//担当者：永江
     {
         if (m_PlayerNumber == 0) { return; }
 
-        if (m_PlayerNumber == 1)
-        {
-            m_NowProduct = Instantiate(m_actersPrefab_Player);
-        }
-        else if (m_PlayerNumber == 2)
-        {
-            m_NowProduct = Instantiate(m_actersPrefab_Enemy);
-            //print("acters = Enemyです");//デバッグ用
-        }
+        if (m_PlayerNumber == 1) {
+		} else if (m_PlayerNumber == 2) {
+		//	m_NowProduct = Instantiate (m_actersPrefab_Enemy);
+			//print("acters = Enemyです");//デバッグ用
+		} else {
+			this.tag = "place";
+		}
 
         //召還位置を(Random.Range.(こ, こ))の二つの値の間のランダムから決定する(X, Y, Z の各種設定可能)ための記述です
-        m_NowProduct.GetComponent<Rigidbody>().position = new Vector3(Random.Range(-1f, 1f),
+/*        m_NowProduct.GetComponent<Rigidbody>().position = new Vector3(Random.Range(-1f, 1f),
                                                                       Random.Range(0.5f, 0.5f),
                                                                       Random.Range(-1f, 1f));
 
@@ -160,6 +192,7 @@ public class BaseCamp : MonoBehaviour//担当者：永江
                                                                       Random.Range(0.5f, 0.5f),
                                                                       Random.Range(-5f, 5f));
         //print("actersを生産しました");//デバッグ用
+<<<<<<< HEAD
     }
     void OnTriggerEnter(Collider col)
     {
@@ -193,4 +226,32 @@ public class BaseCamp : MonoBehaviour//担当者：永江
 
         return false;
     }
+=======
+*/    }
+	void OnTriggerEnter(Collider col){
+		if(col.gameObject.tag == "Player"){
+			speed ++;
+		}
+		if(col.gameObject.tag == "Enemy"){
+			speed --;
+		}
+	} 
+	void OnTriggerExit(Collider col){
+		if(col.gameObject.tag == "Player"){
+			speed --;
+		}
+		if(col.gameObject.tag == "Enemy"){
+			speed ++;
+		}
+	} 
+	public bool KyotenCheck()//Enemyの挙動用に、Enemy側が占拠しているかどうかをReturnするメソッドを追加しました(永江.1月9日)
+	{
+		if (m_Counter <= -14.3)//試験運用中に最後の拠点のm_Counterが[-14.68~~]で止まってしまうバグが発生していたためコレを追加しました。
+		{//仮にゲーム中にm_Counterが[-15]になりきらずとも、視覚的にゲージがMaxでしっかり占拠できている場合は次の拠点を狙います。
+			return true;
+		}
+		
+		return false;
+	}
+>>>>>>> origin/CHIBA
 }

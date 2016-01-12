@@ -18,5 +18,8 @@ public class PlayerStatus : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		HP=Mathf.Clamp (HP,0, MAXHP);
+		if(HP <= 0){
+			Destroy(this.gameObject);
+		}
 	}
 }

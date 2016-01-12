@@ -23,7 +23,7 @@ public class FriendOKMove : MonoBehaviour
                 targetDirection1.y = 0;
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(targetDirection1 - transform.position), Time.time * 0.1f);
 
-                moveDirection += transform.forward * 1;
+                moveDirection += transform.forward * 5f;
                 moveDirection.y -= gravity * Time.deltaTime;
                 controller.Move(moveDirection * Time.deltaTime * speed);
             
@@ -31,7 +31,7 @@ public class FriendOKMove : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider col) {
-        if (col.tag == "Enemy_EO")
+        if (col.tag == "Enemy")
         {
             isPSW = true;
             target1 = col.gameObject;
@@ -39,7 +39,7 @@ public class FriendOKMove : MonoBehaviour
     }
     void OnTriggerExit(Collider col)
     {
-        if (col.tag == "Enemy_EO")
+        if (col.tag == "Enemy")
         {
             isPSW = false;
             target1 = null;
@@ -48,10 +48,14 @@ public class FriendOKMove : MonoBehaviour
     void OnTriggerStay(Collider col)
     {
         //プレイヤーが有効範囲内に存在する場合Playerを追いかける
-        if (col.tag == "Enemy_EO")
+        if (col.tag == "Enemy")
         {
             isPSW = true;
+<<<<<<< HEAD
             target1 = col.gameObject;
+=======
+			target1 = col.gameObject;
+>>>>>>> origin/CHIBA
         }
 
     }

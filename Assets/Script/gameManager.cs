@@ -2,57 +2,38 @@
 using System.Collections;
 
 public class gameManager : MonoBehaviour {
-/*	private float timer;
-	private bool isEnd;
-	private bool isStart;
-	private bool isStaff;
-	public string stageSelect;
-	public string staffScene;
-	
-	// Use this for initialization
-	void Start () {
+	static public bool isClear;
+	private float timer;
+	public GameObject stage01;
+	public GameObject stage02;
+	public GameObject stage03;
+
+	void Start(){
+		if(GameObject.Find("system").GetComponent<system>().stageNum == 1){
+			Instantiate(stage01);
+		}
+		if(GameObject.Find("system").GetComponent<system>().stageNum == 2){
+			Instantiate(stage02);
+		}
+		if(GameObject.Find("system").GetComponent<system>().stageNum == 3){
+			Instantiate(stage03);
+		}
 		timer = 0f;
-		isEnd = false;
-		isStart = false;
-		isStaff = false;
+		isClear = false;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		if(isEnd == true || isStart == true || isStaff == true){
-			timer += 0.9f * Time.deltaTime;
-		}
-		
-		if(timer > 1f && isEnd == true){
-			Application.Quit();
-		}
-		if(timer > 1f && isStart == true){
-			Application.LoadLevel("" + stageSelect);
-		}
-		if(timer > 1f && isStaff == true){
-			Application.LoadLevel("" + staffScene);
+	void Update(){
+		if(isClear == true){
+			timer += Time.deltaTime;
+			if(timer > 2f){
+				Application.LoadLevel("stageSelect");
+			}
 		}
 	}
-	
-	public void end (){
-		if(isEnd == false && isStart == false && isStaff == false){
-			isEnd = true;
-			GameObject.Find("ui_fead").GetComponent<Animator>().SetBool("isStart", true);
-		}
-	}
-	public void start (){
-		if(isEnd == false && isStart == false && isStaff == false){
-			isStart = true;
-			GameObject.Find("ui_fead").GetComponent<Animator>().SetBool("isStart", true);
-		}
-	}
-	public void staff (){
-		if(isEnd == false && isStart == false && isStaff == false){
-			isStaff = true;
-			GameObject.Find("ui_fead").GetComponent<Animator>().SetBool("isStart", true);
-		}
-	}*/
+
 	public void end (){
 		Application.LoadLevel ("Title");
+	}
+	public void menuEnd (){
+		GameObject.Find ("PlayerMenu").SetActive(false);
 	}
 }

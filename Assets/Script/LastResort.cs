@@ -20,7 +20,7 @@ public class LastResort : MonoBehaviour //LastResort == "最後の手段"の英�
         m_MouseOnOff = false;           //初期化
         m_UseCheck = false;             //初期化
         m_Counter = 0;                  //初期化
-
+		m_ChargeCircle = GameObject.Find ("ChargeCircle").GetComponent<Image>();
         m_LR_Hitter.SetActive(false);   //Hit判定は起動時までActive(true)にならないようにする
     }
 

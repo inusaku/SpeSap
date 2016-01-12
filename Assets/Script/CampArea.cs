@@ -14,15 +14,15 @@ public class CampArea : MonoBehaviour//担当者：永江
 
     void Start()
     {
-        ThisAreaObject.transform.position = CampObject.transform.position;//位置の中心をCampObjectに強制的にあわせます
-        ThisAreaObject.transform.localScale = new Vector3(AreaSize, 0.2f, AreaSize);//半径＝入力値の半分です
+//        ThisAreaObject.transform.position = CampObject.transform.position;//位置の中心をCampObjectに強制的にあわせます
+//        ThisAreaObject.transform.localScale = new Vector3(AreaSize, 0.2f, AreaSize);//半径＝入力値の半分です
         //このスクリプトをつけたオブジェクトのScaleはAreaSizeと同じものにしておくととてもわかりやすくなると思います
     }
 
     void Update()
     {
-		Enemy = GameObject.Find ("EnemyO(Clone)");
-		Player = GameObject.Find ("Player");
+		Enemy = GameObject.Find ("Enemy_HP");
+		Player = GameObject.Find ("Player_HP");
         DistanceP_C();
         DistanceE_C();
         Checker();
@@ -39,12 +39,10 @@ public class CampArea : MonoBehaviour//担当者：永江
         if (dis_1 <= AreaSize / 2)
         {
             m_Player = true;
-            print("Playerがtrueになりました");
         }
         else if (dis_1 > AreaSize / 2)
         {
             m_Player = false;
-            print("Playerがfalseになりました");
         }
     }
 
@@ -59,12 +57,12 @@ public class CampArea : MonoBehaviour//担当者：永江
         if (dis_2 <= AreaSize / 2)
         {
             m_Enemy = true;
-            print("Enemyがtrueになりました");
+//            print("Enemyがtrueになりました");
         }
         else if (dis_2 > AreaSize / 2)
         {
             m_Enemy = false;
-            print("Enemyがfalseになりました");
+//            print("Enemyがfalseになりました");
         }
     }
 
