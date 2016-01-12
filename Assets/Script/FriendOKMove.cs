@@ -6,10 +6,11 @@ public class FriendOKMove : MonoBehaviour
     GameObject target1;
     //GameObject target2;
 
-    float  speed = 1f;
+    float  speed = 2f;
     float gravity = 20f;
 
     private bool isPSW = false;
+    
 
     void Update()
     {

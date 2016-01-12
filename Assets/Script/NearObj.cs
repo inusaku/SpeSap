@@ -1,20 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CountMAX : MonoBehaviour {
+public class NearObj : MonoBehaviour
+{
     private GameObject nearObj;
-    private float searchTime=0;
-    public BaseCamp basecamp;
-    public GameObject BaseCamp;
+    private float searchTime = 0;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         nearObj = serchTag(gameObject, "Place");
-        basecamp = BaseCamp.GetComponent<BaseCamp>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         searchTime += Time.deltaTime;
 
         if (searchTime >= 1.0f)
@@ -28,17 +28,13 @@ public class CountMAX : MonoBehaviour {
 
         //対象の位置の方向を向く
         transform.LookAt(nearObj.transform);
-
-        //自分自身の位置から相対的に移動する
-        transform.Translate(Vector3.forward * 0.01f);
     }
 
-    //指定されたタグの中で最も近いものを取得
     GameObject serchTag(GameObject nowObj, string tagName)
     {
         float tmpDis = 0;           //距離用一時変数
         float nearDis = 0;          //最も近いオブジェクトの距離
-        string nearObjName = "BaceCamp";    //オブジェクト名称
+        //string nearObjName = "";    //オブジェクト名称
         GameObject targetObj = null; //オブジェクト
 
         //タグ指定されたオブジェクトを配列で取得する
@@ -55,27 +51,9 @@ public class CountMAX : MonoBehaviour {
                 //nearObjName = obs.name;
                 targetObj = obs;
             }
-
         }
-        //最も近かったオブジェクトを返す
+
+
         return targetObj;
-    }
-
-    void OnTriggerStay(Collider col)
-    {
-        if (col.gameObject.tag == "Place")
-        {
-            if (basecamp.m_MaxPoint <= 100f)
-            {
-                nearObj = serchTag(gameObject, "Place");
-                //対象の位置の方向を向く
-                transform.LookAt(nearObj.transform);
-
-                //自分自身の位置から相対的に移動する
-                transform.Translate(Vector3.forward * 0.01f);
-
-            }
-        }
-
     }
 }
