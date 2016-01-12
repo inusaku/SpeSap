@@ -7,12 +7,13 @@ public class PlayerGeneration : MonoBehaviour {
 	public GameObject PlayerHP;
 	public GameObject menu;
 	public GameObject cost;
+	private GameObject _child;
 	public Vector3 kyotenpos;
 	private float x;
 	private float y;
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 	
 	// Update is called once per frame
@@ -26,7 +27,8 @@ public class PlayerGeneration : MonoBehaviour {
 			Vector3 pos = new Vector3 (x, kyotenpos.y, y);
 			Instantiate (player01, pos, player01.transform.rotation);
 			Instantiate (PlayerHP);
-
+			_child = player01.transform.FindChild ("par3").gameObject;
+			_child.GetComponent<ParticleSystem>().startColor=Color.red;
 			cost.GetComponent<CostSC> ().cost -= player01.gameObject.GetComponent<PlayerStatus>().cost;
 		}
 
@@ -37,7 +39,8 @@ public class PlayerGeneration : MonoBehaviour {
 			
 			Instantiate (player02, pos, player02.transform.rotation);
 			Instantiate (PlayerHP);
-
+			_child = player02.transform.FindChild ("par3").gameObject;
+			_child.GetComponent<ParticleSystem>().startColor=Color.cyan;
 			cost.GetComponent<CostSC> ().cost -= player02.gameObject.GetComponent<PlayerStatus>().cost;
 		}
 
