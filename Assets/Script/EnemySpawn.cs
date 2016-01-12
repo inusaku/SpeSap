@@ -34,7 +34,7 @@ public class EnemySpawn : MonoBehaviour {
     }
     void Spawn()
     {
-		if (enemyCount <= 50){
+		if (enemyCount <= 100){
 	        for (int i = 0; i < count; i++)
 	        {
 	            float x = Random.Range(0f, 0f);

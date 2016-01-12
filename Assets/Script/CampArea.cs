@@ -39,12 +39,10 @@ public class CampArea : MonoBehaviour//担当者：永江
         if (dis_1 <= AreaSize / 2)
         {
             m_Player = true;
-            print("Playerがtrueになりました");
         }
         else if (dis_1 > AreaSize / 2)
         {
             m_Player = false;
-            print("Playerがfalseになりました");
         }
     }
 

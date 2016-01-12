@@ -12,8 +12,11 @@ public class selectManager : MonoBehaviour {
 	public Sprite stage1;
 	public Sprite stage2;
 	public Sprite stage3;
-	public AudioClip select;
+	public AudioClip select01;
+	public AudioClip select02;
+	public AudioClip select03;
 	private bool isSE;
+	private GameObject cam;
 	// Use this for initialization
 	void Start () {
 		num = 0;
@@ -21,6 +24,7 @@ public class selectManager : MonoBehaviour {
 		isEnd = false;
 		isStart = false;
 		isSE = false;
+		cam = GameObject.Find ("Main Camera");
 	}
 	
 	// Update is called once per frame
@@ -33,6 +37,7 @@ public class selectManager : MonoBehaviour {
 			Application.LoadLevel("Title");
 		}
 		if(timer > 1f && isStart == true){
+			GameObject.Find("ui_loading").GetComponent<Image>().color = new Color(1,1,1,1);
 			Application.LoadLevel("" + mainScene);
 		}
 
@@ -55,6 +60,7 @@ public class selectManager : MonoBehaviour {
 			GameObject.Find ("ui_L").GetComponent<Image>().raycastTarget = true;
 			GameObject.Find ("ui_stageNum").GetComponent<Image>().sprite = stage3;
 		}
+		cam.GetComponent<Animator> ().SetInteger ("num", num);
 	}
 	
 	public void end (){
@@ -64,23 +70,31 @@ public class selectManager : MonoBehaviour {
 		}
 		if(isSE == false){
 			isSE = true;
-			this.GetComponent<AudioSource> ().PlayOneShot (select);
+			GameObject.Find("ui_gameEnd").GetComponent<Animator>().SetBool("isEnd", true);
+			this.GetComponent<AudioSource> ().PlayOneShot (select01);
 		}
 	}
 	public void start (){
 		if(isEnd == false && isStart == false){
 			isStart = true;
+			this.GetComponent<AudioSource> ().pitch = 0.5f;
 			GameObject.Find("ui_fead").GetComponent<Animator>().SetBool("isStart", true);
 		}
 		if(isSE == false){
 			isSE = true;
-			this.GetComponent<AudioSource> ().PlayOneShot (select);
+			GameObject.Find("ui_gameStart").GetComponent<Animator>().SetBool("isStart", true);
+			this.GetComponent<AudioSource> ().pitch = 0.75f;
+			this.GetComponent<AudioSource> ().PlayOneShot (select02);
 		}
 	}
 	public void R (){
 		num ++;
+		this.GetComponent<AudioSource> ().pitch = 0.75f;
+		this.GetComponent<AudioSource> ().PlayOneShot (select03);
 	}
 	public void L (){
 		num --;
+		this.GetComponent<AudioSource> ().pitch = 0.75f;
+		this.GetComponent<AudioSource> ().PlayOneShot (select03);
 	}
 }

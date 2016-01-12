@@ -40,7 +40,7 @@ public class ui_HPSystem: MonoBehaviour {
 				var screenPos = GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(target.position);
 				var localPos = Vector2.zero;
 				this.transform.position = new Vector3(screenPos.x, screenPos.y + 20f, screenPos.z);
-				if(GameObject.Find ("Player_HP").GetComponent<PlayerStatus> ().HP < this.GetComponent<Slider>().value){
+				if(target.GetComponent<PlayerStatus> ().HP < this.GetComponent<Slider>().value){
 					this.GetComponent<Slider>().value -= 10f * Time.deltaTime;
 					GameObject.Find("ui_playerHP_under").GetComponent<Slider>().value -= 10f * Time.deltaTime;
 				}
@@ -59,7 +59,7 @@ public class ui_HPSystem: MonoBehaviour {
 				var screenPos = GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(target.position);
 				var localPos = Vector2.zero;
 				this.transform.position = new Vector3(screenPos.x, screenPos.y + 20f, screenPos.z);
-				if(GameObject.Find ("Enemy_HP").GetComponent<Enemy> ().life < this.GetComponent<Slider>().value * 2f){
+				if(target.GetComponent<Enemy> ().life < this.GetComponent<Slider>().value * 2f){
 					this.GetComponent<Slider>().value -= 10f * Time.deltaTime;
 				}
 			}

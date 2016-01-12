@@ -20,7 +20,6 @@ public class EnemyDMove : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
-		Debug.Log ("" + m_NearKyoten);
 		if (frame > 3) {
 			if (agent == null) {
 				agent = this.gameObject.GetComponent<NavMeshAgent> ();	
