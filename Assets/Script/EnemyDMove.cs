@@ -4,21 +4,34 @@ using System.Collections;
 public class EnemyDMove : MonoBehaviour {
     //public GameObject target1;
     //public GameObject target2;
+    public NavMeshAgent agent;
     public Transform player;
-    public Transform target2;
+    public Transform m_NearKyoten;
     float speed = 2.0f;
     float gravity = 100.0f;
 
+    
     private bool isEnabled = false;
+    
     void start()
     {
-        player= GameObject.FindGameObjectWithTag("Player").transform;
+        m_NearKyoten = this.gameObject.GetComponent<EMM>().NearKyoten().transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-       CharacterController controller = GetComponent<CharacterController>();
+        if (agent == null)
+        {
+            agent = this.gameObject.GetComponent<NavMeshAgent>();
+        }
+        if (player == null)
+        {
+            player = GameObject.Find("Player").transform;
+        }
+        if (m_NearKyoten == null) { m_NearKyoten = player; }//もし拠点を全制覇している場合は動きません。(nullが入ってしまいますが大丈夫なはずです)
+        else { m_NearKyoten = this.gameObject.GetComponent<EMM>().NearKyoten().transform; }
+        CharacterController controller = GetComponent<CharacterController>();
        Vector3 moveDirection = Vector3.zero;
         Vector3 playerPos = player.position;                 //プレイヤーの位置
         Vector3 direction = playerPos - transform.position; //方向と距離を求める。
@@ -37,6 +50,7 @@ public class EnemyDMove : MonoBehaviour {
             Quaternion rotate = Quaternion.LookRotation(player.position - transform.position);
             rotate.x = rotate.z = 0;
             transform.rotation = rotate;
+            
 
             moveDirection += transform.forward * 1;
             moveDirection.y -= gravity * Time.deltaTime;
@@ -44,17 +58,19 @@ public class EnemyDMove : MonoBehaviour {
         }
         else
         {
-                Vector3 target2Direction = target2.transform.position;
+                Vector3 target2Direction = m_NearKyoten.transform.position;
                 target2Direction.y = 0;
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target2Direction - transform.position), Time.time * 0.1f);
-            Quaternion rotate = Quaternion.LookRotation(target2.position - transform.position);
+            Quaternion rotate = Quaternion.LookRotation(m_NearKyoten.position - transform.position);
             rotate.x = rotate.z = 0;
             transform.rotation = rotate;
 
+          
+
             moveDirection += transform.forward * 1;
                 moveDirection.y -= gravity * Time.deltaTime;
-                controller.Move(moveDirection * Time.deltaTime * speed);
-            
+            agent.SetDestination(m_NearKyoten.transform.position);
+            //controller.Move(moveDirection * Time.deltaTime * speed);
 
         }
     }
@@ -64,6 +80,7 @@ public class EnemyDMove : MonoBehaviour {
         if (col.tag == "Player")
         {
             isEnabled = true;
+            
             player = col.transform;
         }
         
@@ -75,6 +92,7 @@ public class EnemyDMove : MonoBehaviour {
         {
             isEnabled = false;
         }
+       
     }
 
     void OnTriggerStay(Collider col)
@@ -83,6 +101,7 @@ public class EnemyDMove : MonoBehaviour {
         {
             isEnabled = true;
         }
+       
     }
 
 }

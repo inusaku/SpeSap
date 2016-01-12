@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35ca2a7f59e0d95449a43ab92ac8a417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  moveset: 0
 --- !u!195 &109870589
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -277,7 +277,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MAXHP: 50
   HP: 50
+  MAXATK: 0
   Atk: 5
+  speed: 3.5
+  cost: 0
 --- !u!135 &109870596
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -639,6 +642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 1943637928}
   target: {fileID: 0}
+  targetOb: {fileID: 0}
 --- !u!1 &361688336
 GameObject:
   m_ObjectHideFlags: 0
