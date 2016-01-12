@@ -69,12 +69,34 @@ public class BaseCamp : MonoBehaviour//担当者：永江
 			if(this.gameObject.name == "kyoten_C"){
 				GameObject.Find("base_kyoten_C").tag = "kyoten";
 			}
+<<<<<<< HEAD
+=======
+			this.tag = "Place";
+>>>>>>> origin/CHIBA
 		} else if (playerHP > 10f && playerHP < 20f) {
 			GetComponent<Renderer> ().material.color = Color.green;
 			this.tag = "Place";
+			if(this.gameObject.name == "kyoten_A"){
+				GameObject.Find("base_kyoten_A").tag = "Respawn";
+			}
+			if(this.gameObject.name == "kyoten_B"){
+				GameObject.Find("base_kyoten_B").tag = "Respawn";
+			}
+			if(this.gameObject.name == "kyoten_C"){
+				GameObject.Find("base_kyoten_C").tag = "Respawn";
+			}
 		} else if(playerHP > 0f && playerHP < 10f){
 			GetComponent<Renderer> ().material.color = Color.red;
 			this.tag = "Place";
+			if(this.gameObject.name == "kyoten_A"){
+				GameObject.Find("base_kyoten_A").tag = "Respawn";
+			}
+			if(this.gameObject.name == "kyoten_B"){
+				GameObject.Find("base_kyoten_B").tag = "Respawn";
+			}
+			if(this.gameObject.name == "kyoten_C"){
+				GameObject.Find("base_kyoten_C").tag = "Respawn";
+			}
 		}
         CampPointChecker();
         MakerChecker();
@@ -180,6 +202,15 @@ public class BaseCamp : MonoBehaviour//担当者：永江
 			//print("acters = Enemyです");//デバッグ用
 		} else {
 			this.tag = "place";
+			if(this.gameObject.name == "kyoten_A"){
+				GameObject.Find("base_kyoten_A").tag = "Respawn";
+			}
+			if(this.gameObject.name == "kyoten_B"){
+				GameObject.Find("base_kyoten_B").tag = "Respawn";
+			}
+			if(this.gameObject.name == "kyoten_C"){
+				GameObject.Find("base_kyoten_C").tag = "Respawn";
+			}
 		}
 
         //召還位置を(Random.Range.(こ, こ))の二つの値の間のランダムから決定する(X, Y, Z の各種設定可能)ための記述です

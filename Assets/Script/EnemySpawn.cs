@@ -39,6 +39,9 @@ public class EnemySpawn : MonoBehaviour {
     void Spawn()
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/CHIBA
 		if (enemyCount <= 100){
 	        for (int i = 0; i < count; i++)
 	        {
