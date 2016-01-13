@@ -31,11 +31,6 @@ public class EMM : MonoBehaviour {
                 l_TargetKyoten = Kyoten;                       //returnする拠点も近いものに変えます。
             }
         }
-
-        if (l_NearDis == 99999) { Debug.Log("制圧　(`・ω・´)　完了"); }//デバッグ用です。
-        else if (l_TargetKyoten == null) { Debug.Log("ぬるぽおおぉぉ(゜∀゜)ぉぉぉぉぉ!!!???"); }//デバッグ用です。
-        else { Debug.Log("[" + (float)l_TargetKyoten.transform.position.x + "," + (float)l_TargetKyoten.transform.position.z + "]に向かいますよ～ ﾐ(　つ・ω・)つ"); }//デバッグ用です。
-
         return l_TargetKyoten;                                 //最も近くて占拠されていない拠点を返します。
     }
 

@@ -52,8 +52,11 @@ public class FriendOKMove : MonoBehaviour
         {
             isPSW = true;
 			target1 = col.gameObject;
+<<<<<<< HEAD
             target1 = col.gameObject;
             target1 = col.gameObject;
+=======
+>>>>>>> origin/master
         }
 
     }
