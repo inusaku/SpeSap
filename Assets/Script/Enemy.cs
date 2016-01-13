@@ -4,7 +4,7 @@ using System.Collections;
 public class Enemy : MonoBehaviour {
     public float life = 100;
     public float HP = 100;
-
+	public float atk = 10f;
 
 
 	// Use this for initialization

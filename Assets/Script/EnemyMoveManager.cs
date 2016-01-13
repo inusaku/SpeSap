@@ -1,43 +1,84 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class EnemyMoveManager : MonoBehaviour                  //担当者：永江　汎用性はかなぐり捨てています。申し訳ありません。
-{                                                              //SerchKyotenメソッドを少し換えればだいぶ汎用性が出るのですが、今回は不要と判断し、かなぐり捨てました。
-    public GameObject m_Enemy;                                 //エネミーと拠点の距離をとるために使うGameObject型のメンバ変数です。
-    private GameObject m_NearKyoten;                           //一番近い拠点を入れるための、GameObject型のメンバ変数です。
+public class EnemyMoveManager : MonoBehaviour                                                     //担当者：永江　汎用性はかなぐり捨てています。申し訳ありません。
+{                                                                                                 //SerchKyotenメソッドを少し換えればだいぶ汎用性が出るのですが、今回は不要と判断し、かなぐり捨てました。
+    public GameObject m_Enemy;                                                                    //エネミーと拠点の距離をとるために使うGameObject型のメンバ変数です。
+    private GameObject m_Target;
+    private bool m_Seiatu;
 
-    void Start()                                               //起動時
+    void Start()                                                                                  //起動時
     {
-        m_NearKyoten = SerchKyoten(m_Enemy);                   //m_NearKyotenにSerchKyotenメソッドを使い、初期設定をします。
+        m_Target = SerchTarget(m_Enemy);
+        m_Seiatu = false;
     }
 
-    void Update()                                              //更新
+    void Update()                                                                                 //更新
     {
-        m_NearKyoten = SerchKyoten(m_Enemy);                   //m_NearKyotenを起動し、調べなおします。
+        m_Target = SerchTarget(m_Enemy);
     }
 
-    GameObject SerchKyoten(GameObject gameObject)              //現地点から一番近くて占拠されていない拠点を探すメソッドです。
+    private GameObject SerchTarget(GameObject gameObject)                                         //現地点から一番近くて占拠されていない拠点を探すメソッドです。
     {
-        float l_TmpDis = 0;                                    //距離を調べるため一時的に保持するためのローカル変数です。
-        float l_NearDis = 99999;                               //最も近い拠点の距離を保持するためのローカル変数です。
-        GameObject l_TargetKyoten = null;                      //この時点では拠点を見つけていないためnullを入れておきます。
+        string l_Target = "Place";
+        if (m_Seiatu == true) { l_Target = "Player"; }
 
-        foreach (GameObject Kyoten in GameObject.FindGameObjectsWithTag("Place"))//foreachで"Place"というタグの付いたゲームオブジェクトを回します。
+        float l_TmpDis = 0;                                                                       //距離を調べるため一時的に保持するためのローカル変数です。
+        float l_NearDis = 10000;                                                                  //最も近い拠点の距離を保持するためのローカル変数です。
+        GameObject l_TargetObject = null;                                                         //この時点では拠点を見つけていないためnullを入れておきます。
+
+        foreach (GameObject Target in GameObject.FindGameObjectsWithTag(l_Target))
         {
-            l_TmpDis = Vector3.Distance(Kyoten.transform.position, gameObject.transform.position);//2オブジェクト間の距離を取ります。
+            l_TmpDis = Vector3.Distance(Target.transform.position, gameObject.transform.position);//2オブジェクト間の距離を取ります。
 
-            if (l_NearDis > l_TmpDis && Kyoten.GetComponent<BaseCamp>().KyotenCheck() == false)//距離が現在保持している拠点より近く、まだ制圧できていないものならば
+            if (m_Seiatu == true && l_NearDis > l_TmpDis)
             {
-                l_NearDis = l_TmpDis;                          //比較用に保持する拠点を近いものに変えて、
-                l_TargetKyoten = Kyoten;                       //returnする拠点も近いものに変えます。
+                l_NearDis = l_TmpDis;
+                l_TargetObject = Target;
+            }
+            else if (Target.GetComponent<BaseCamp>().KyotenCheck() == false && l_NearDis > l_TmpDis)//距離が現在保持している拠点より近く、まだ制圧できていないものならば
+            {
+                l_NearDis = l_TmpDis;                                                            //比較用に保持する拠点を近いものに変えて、
+                l_TargetObject = Target;                                                         //returnする拠点も近いものに変えます。
+                m_Seiatu = false;
             }
         }
 
-        return l_TargetKyoten;                                 //最も近くて占拠されていない拠点を返します。
+        if (l_TargetObject == null)
+        {
+            if (m_Seiatu == false) { m_Seiatu = true; }
+
+            if (m_Seiatu == true) { l_TargetObject = NullSerch("Player"); }
+
+            if (l_TargetObject == null){ l_TargetObject = NullSerch("Place"); }
+        }
+
+		return l_TargetObject;
     }
 
-    public GameObject NearKyoten()                             //どの拠点が一番近いかを返すメソッドです。
+    private GameObject NullSerch(string tag)
     {
-        return m_NearKyoten;                                   //ぬるっと返します。
+        float l_TmpDis = 0;
+        float l_NearDis = 10000;
+        GameObject l_TargetObject = null;
+
+        foreach (GameObject Target in GameObject.FindGameObjectsWithTag(tag))
+        {
+            l_TmpDis = Vector3.Distance(Target.transform.position, this.gameObject.transform.position);
+
+            if (l_NearDis > l_TmpDis)
+            {
+                l_NearDis = l_TmpDis;
+                l_TargetObject = Target;
+            }
+        }
+
+        return l_TargetObject;
+    }//Nullを殺すための機械
+
+    public GameObject NearTarget()
+    {
+        return m_Target;
     }
 }

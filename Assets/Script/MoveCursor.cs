@@ -6,6 +6,7 @@ public class MoveCursor : MonoBehaviour {
 	private GameObject cursor;
 	public GameObject menu;
 	private Vector3 clickPosition;
+	public AudioClip select;
 	// Use this for initialization
 	void Start () {
 //		menu = GameObject.Find ("PlayerMenu");
@@ -20,7 +21,8 @@ public class MoveCursor : MonoBehaviour {
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			if(Physics.Raycast(ray,out hit)){
 			
-				if(hit.collider.gameObject.tag=="kyoten" && hit.collider.gameObject.name != "E_kyoten_A"){
+				if(hit.collider.gameObject.tag=="kyoten" || hit.collider.gameObject.tag=="kariKyoten"){
+					this.GetComponent<AudioSource> ().PlayOneShot (select);
 					menu.SetActive(true);
 					GetComponent<PlayerGeneration>().kyotenpos=hit.transform.position;
 				}

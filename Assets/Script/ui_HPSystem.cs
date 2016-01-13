@@ -11,10 +11,25 @@ public class ui_HPSystem: MonoBehaviour {
 
 	void Start () {
 		frame = 0;
-		if (this.gameObject.name == "ui_playerHP" || this.gameObject.name == "ui_enemyHP" || this.gameObject.name == "ui_P_kyotenHP_A" || this.gameObject.name == "ui_E_kyotenHP_A" || this.gameObject.name == "ui_P_kyotenHP_B" || this.gameObject.name == "ui_E_kyotenHP_B" || this.gameObject.name == "ui_P_kyotenHP_C" || this.gameObject.name == "ui_E_kyotenHP_C") {
-		} else {
+		if(this.gameObject.name == "ui_playerHP" || 
+		    this.gameObject.name == "ui_enemyHP" || 
+		    this.gameObject.name == "ui_P_kyotenHP_A" || 
+		    this.gameObject.name == "ui_E_kyotenHP_A" || 
+		    this.gameObject.name == "ui_P_kyotenHP_B" || 
+		    this.gameObject.name == "ui_E_kyotenHP_B" || 
+		    this.gameObject.name == "ui_P_kyotenHP_C" || 
+		    this.gameObject.name == "ui_E_kyotenHP_C" ||
+		    this.gameObject.name == "ui_P_kyotenHP_D" || 
+		    this.gameObject.name == "ui_E_kyotenHP_D" || 
+		    this.gameObject.name == "ui_P_kyotenHP_E" || 
+		    this.gameObject.name == "ui_E_kyotenHP_E" ||
+		    this.gameObject.name == "ui_P_kyotenHP_F" || 
+		    this.gameObject.name == "ui_E_kyotenHP_F"
+		    ) {
+		}else{
 			this.GetComponent<Slider> ().value = 1f;
 		}
+
 		if (this.name == "ui_playerHP(Clone)") {
 			this.name = "ui_playerHP";
 			this.transform.parent = GameObject.Find ("Canvas_HP").transform;
@@ -42,7 +57,6 @@ public class ui_HPSystem: MonoBehaviour {
 				this.transform.position = new Vector3(screenPos.x, screenPos.y + 20f, screenPos.z);
 				if(target.GetComponent<PlayerStatus> ().HP < this.GetComponent<Slider>().value){
 					this.GetComponent<Slider>().value -= 10f * Time.deltaTime;
-					GameObject.Find("ui_playerHP_under").GetComponent<Slider>().value -= 10f * Time.deltaTime;
 				}
 			}
 		}
@@ -64,7 +78,7 @@ public class ui_HPSystem: MonoBehaviour {
 				}
 			}
 		}
-
+		//honkyotenHP
 		if(this.gameObject.name == "ui_P_kyoten_A"){
 			target = GameObject.Find ("P_kyoten_A").transform;
 			targetOb = GameObject.Find ("P_kyoten_A");
@@ -72,6 +86,36 @@ public class ui_HPSystem: MonoBehaviour {
 			var localPos = Vector2.zero;
 			this.transform.position = new Vector3(screenPos.x, screenPos.y + 20f, screenPos.z);
 			if(GameObject.Find ("P_kyoten_A").GetComponent<SpaceLife> ().Life / 100 < this.GetComponent<Slider>().value){
+				this.GetComponent<Slider>().value -= 0.5f * Time.deltaTime;
+			}
+		}
+		if(this.gameObject.name == "ui_P_kyoten_B" && Application.loadedLevelName == "Stage02"){
+			target = GameObject.Find ("P_kyoten_B").transform;
+			targetOb = GameObject.Find ("P_kyoten_B");
+			var screenPos = GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(target.position);
+			var localPos = Vector2.zero;
+			this.transform.position = new Vector3(screenPos.x, screenPos.y + 20f, screenPos.z);
+			if(GameObject.Find ("P_kyoten_B").GetComponent<SpaceLife> ().Life / 100 < this.GetComponent<Slider>().value){
+				this.GetComponent<Slider>().value -= 0.5f * Time.deltaTime;
+			}
+		}
+		if(this.gameObject.name == "ui_E_kyoten_A"){
+			target = GameObject.Find ("E_kyoten_A").transform;
+			targetOb = GameObject.Find ("E_kyoten_A");
+			var screenPos = GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(target.position);
+			var localPos = Vector2.zero;
+			this.transform.position = new Vector3(screenPos.x, screenPos.y + 20f, screenPos.z);
+			if(GameObject.Find ("E_kyoten_A").GetComponent<SpaceLife> ().Life / 100 < this.GetComponent<Slider>().value){
+				this.GetComponent<Slider>().value -= 0.5f * Time.deltaTime;
+			}
+		}
+		if(this.gameObject.name == "ui_E_kyoten_B"){
+			target = GameObject.Find ("E_kyoten_B").transform;
+			targetOb = GameObject.Find ("E_kyoten_B");
+			var screenPos = GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(target.position);
+			var localPos = Vector2.zero;
+			this.transform.position = new Vector3(screenPos.x, screenPos.y + 20f, screenPos.z);
+			if(GameObject.Find ("E_kyoten_B").GetComponent<SpaceLife> ().Life / 100 < this.GetComponent<Slider>().value){
 				this.GetComponent<Slider>().value -= 0.5f * Time.deltaTime;
 			}
 		}
@@ -118,19 +162,50 @@ public class ui_HPSystem: MonoBehaviour {
 			var localPos = Vector2.zero;
 			this.transform.position = new Vector3(screenPos.x, screenPos.y + 50f, screenPos.z);
 		}
-		if(this.gameObject.name == "ui_E_kyoten_A"){
-			target = GameObject.Find ("E_kyoten_A").transform;
-			targetOb = GameObject.Find ("E_kyoten_A");
+		if(this.gameObject.name == "ui_P_kyotenHP_D"){
+			target = GameObject.Find ("kyoten_D").transform;
+			targetOb = GameObject.Find ("kyoten_D");
 			var screenPos = GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(target.position);
 			var localPos = Vector2.zero;
-			this.transform.position = new Vector3(screenPos.x, screenPos.y + 20f, screenPos.z);
-			if(GameObject.Find ("E_kyoten_A").GetComponent<SpaceLife> ().Life / 100 < this.GetComponent<Slider>().value){
-				this.GetComponent<Slider>().value -= 0.5f * Time.deltaTime;
-			}
+			this.transform.position = new Vector3(screenPos.x, screenPos.y + 50f, screenPos.z);
 		}
-
+		if(this.gameObject.name == "ui_E_kyotenHP_D"){
+			target = GameObject.Find ("kyoten_D").transform;
+			targetOb = GameObject.Find ("kyoten_D");
+			var screenPos = GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(target.position);
+			var localPos = Vector2.zero;
+			this.transform.position = new Vector3(screenPos.x, screenPos.y + 50f, screenPos.z);
+		}
+		if(this.gameObject.name == "ui_P_kyotenHP_E"){
+			target = GameObject.Find ("kyoten_E").transform;
+			targetOb = GameObject.Find ("kyoten_E");
+			var screenPos = GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(target.position);
+			var localPos = Vector2.zero;
+			this.transform.position = new Vector3(screenPos.x, screenPos.y + 50f, screenPos.z);
+		}
+		if(this.gameObject.name == "ui_E_kyotenHP_E"){
+			target = GameObject.Find ("kyoten_E").transform;
+			targetOb = GameObject.Find ("kyoten_E");
+			var screenPos = GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(target.position);
+			var localPos = Vector2.zero;
+			this.transform.position = new Vector3(screenPos.x, screenPos.y + 50f, screenPos.z);
+		}
+		if(this.gameObject.name == "ui_P_kyotenHP_F" && Application.loadedLevelName == "Stage02"){
+			target = GameObject.Find ("kyoten_F").transform;
+			targetOb = GameObject.Find ("kyoten_F");
+			var screenPos = GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(target.position);
+			var localPos = Vector2.zero;
+			this.transform.position = new Vector3(screenPos.x, screenPos.y + 50f, screenPos.z);
+		}
+		if(this.gameObject.name == "ui_E_kyotenHP_F" && Application.loadedLevelName == "Stage02"){
+			target = GameObject.Find ("kyoten_F").transform;
+			targetOb = GameObject.Find ("kyoten_F");
+			var screenPos = GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(target.position);
+			var localPos = Vector2.zero;
+			this.transform.position = new Vector3(screenPos.x, screenPos.y + 50f, screenPos.z);
+		}
+		
 		frame ++;
-
 		if(target == null){
 			this.GetComponent<Slider> ().value = 0f;
 			this.transform.position = new Vector3(10000f,0,0); 

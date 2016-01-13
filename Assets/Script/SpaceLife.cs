@@ -4,6 +4,8 @@ using System.Collections;
 public class SpaceLife : MonoBehaviour {
 	public Animator animator;
 	public string BoolName;
+	int E_kyotenCount;
+	int kyoten_Count;
 	[SerializeField]
 	public float Life;
 	// Use this for initialization
@@ -13,8 +15,16 @@ public class SpaceLife : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		E_kyotenCount = GameObject.FindGameObjectsWithTag("E_kyoten").Length;
+		kyoten_Count = GameObject.FindGameObjectsWithTag("kyoten").Length;
 		if (Life <= 0.0){
 			StartCoroutine(del(1.4f));
+		}
+		if(kyoten_Count == 0){
+			gameManager.isFailed = true;
+		}
+		if(E_kyotenCount == 0){
+			gameManager.isClear = true;
 		}
 	}
 	IEnumerator del(float wait){
@@ -30,10 +40,11 @@ public class SpaceLife : MonoBehaviour {
 			Destroy (GameObject.Find("ui_P_kyoten_B"));
 		}
 		if(this.gameObject.name == "E_kyoten_A"){
-			gameManager.isClear = true;
+			EnemySpawn.isDie_A = true;
 			Destroy (GameObject.Find("ui_E_kyoten_A"));
 		}
 		if(this.gameObject.name == "E_kyoten_B"){
+			EnemySpawn.isDie_B = true;
 			Destroy (GameObject.Find("ui_E_kyoten_B"));
 		}
 	}

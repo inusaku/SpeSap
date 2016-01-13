@@ -10,7 +10,7 @@ public class CampArea : MonoBehaviour//担当者：永江
     public float AreaSize;           //Areaの直径を入力してください
 
     private bool m_Player = false;   //半径に入っている場合はtrue
-    private bool m_Enemy = false;    //半径に入っている場合はtrue
+    public bool m_Enemy = false;    //半径に入っている場合はtrue
 
     void Start()
     {
@@ -24,7 +24,7 @@ public class CampArea : MonoBehaviour//担当者：永江
 		Enemy = GameObject.Find ("Enemy_HP");
 		Player = GameObject.Find ("Player_HP");
         DistanceP_C();
-        DistanceE_C();
+ //       DistanceE_C();
         Checker();
 	}
 
@@ -45,7 +45,7 @@ public class CampArea : MonoBehaviour//担当者：永江
             m_Player = false;
         }
     }
-
+/*
     private void DistanceE_C()//拠点とEnemy・Campの距離を調べて一定以内なら拠点占拠ポイントを加算
     {
         if (Enemy == null) { return; }
@@ -64,8 +64,17 @@ public class CampArea : MonoBehaviour//担当者：永江
             m_Enemy = false;
 //            print("Enemyがfalseになりました");
         }
-    }
-
+    }*/
+	void OnTriggerStay(Collider col){
+		if(col.gameObject.tag == "Enemy"){
+			m_Enemy = true;
+		}
+	}
+	void OnTriggerExit(Collider col){
+		if(col.gameObject.tag == "Enemy"){
+			m_Enemy = false;
+		}
+	}
     private void Checker()//boolをチェックしてBaseCamp内部のメソッドをに働きかける
     {
         if (m_Player == true)

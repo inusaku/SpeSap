@@ -30,7 +30,6 @@ public class Move : MonoBehaviour {
 	{
 		if (col.gameObject.tag == "Cursor") {
 			moveset=true;
-			Debug.Log("cursorhit");
 		}
 	}
 }

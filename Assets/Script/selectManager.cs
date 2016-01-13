@@ -7,7 +7,9 @@ public class selectManager : MonoBehaviour {
 	private float timer;
 	private bool isEnd;
 	private bool isStart;
-	public string mainScene;
+	public string stage01;
+	public string stage02;
+	public string stage03;
 	private int num;
 	public Sprite stage1;
 	public Sprite stage2;
@@ -38,7 +40,15 @@ public class selectManager : MonoBehaviour {
 		}
 		if(timer > 1f && isStart == true){
 			GameObject.Find("ui_loading").GetComponent<Image>().color = new Color(1,1,1,1);
-			Application.LoadLevel("" + mainScene);
+			if(num == 0){
+				Application.LoadLevel("" + stage01);
+			}
+			if(num == 1){
+				Application.LoadLevel("" + stage02);
+			}
+			if(num == 2){
+				Application.LoadLevel("" + stage03);
+			}
 		}
 
 		if(num == 0){
@@ -85,15 +95,6 @@ public class selectManager : MonoBehaviour {
 			GameObject.Find("ui_gameStart").GetComponent<Animator>().SetBool("isStart", true);
 			this.GetComponent<AudioSource> ().pitch = 0.75f;
 			this.GetComponent<AudioSource> ().PlayOneShot (select02);
-			if(num == 0){
-				GameObject.Find("system").GetComponent<system>().stageNum = 1;
-			}
-			if(num == 1){
-				GameObject.Find("system").GetComponent<system>().stageNum = 2;
-			}
-			if(num == 2){
-				GameObject.Find("system").GetComponent<system>().stageNum = 3;
-			}
 		}
 	}
 	public void R (){

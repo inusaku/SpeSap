@@ -22,11 +22,24 @@ public class BaseCamp : MonoBehaviour//担当者：永江
 	float playerSliVal;
     float playerHP;
 	float enemyHP;
+
+	public bool isKyote_A;
+	public bool isKyote_B;
+	public bool isKyote_C;
+	public bool isKyote_D;
+	public bool isKyote_E;
+	public bool isKyote_F;
 	public float speed;
 
 	void Start()
     {
-        m_MaxNumber.x = m_Interbal;
+		isKyote_A = false;
+		isKyote_B = false;
+		isKyote_C = false;
+		isKyote_D = false;
+		isKyote_E = false;
+		isKyote_F = false;
+		m_MaxNumber.x = m_Interbal;
         m_MaxNumber.y = m_Number;
         m_MaxPoint = (int)m_PubMaxPoint / 2;            //マイナス(最大値 / 2) <= 0 <= プラス(最大値 / 2)　が拠点占拠ポイントの範囲になります
 
@@ -46,10 +59,38 @@ public class BaseCamp : MonoBehaviour//担当者：永江
 			enemySlider = GameObject.Find("ui_P_kyotenHP_C").GetComponent<Slider>();
 			playerSlider = GameObject.Find("ui_E_kyotenHP_C").GetComponent<Slider>();
 		}
+		if(this.gameObject.name == "kyoten_D"){
+			enemySlider = GameObject.Find("ui_P_kyotenHP_D").GetComponent<Slider>();
+			playerSlider = GameObject.Find("ui_E_kyotenHP_D").GetComponent<Slider>();
+		}
+		if(this.gameObject.name == "kyoten_E"){
+			enemySlider = GameObject.Find("ui_P_kyotenHP_E").GetComponent<Slider>();
+			playerSlider = GameObject.Find("ui_E_kyotenHP_E").GetComponent<Slider>();
+		}
+		if(this.gameObject.name == "kyoten_F"){
+			enemySlider = GameObject.Find("ui_P_kyotenHP_F").GetComponent<Slider>();
+			playerSlider = GameObject.Find("ui_E_kyotenHP_F").GetComponent<Slider>();
+		}
+
 		enemySliVal = 15;
 		playerSliVal = 15;
-		playerHP = 15;
-		enemyHP = 15;
+		if (Application.loadedLevelName == "Stage02") {
+			if (this.gameObject.name == "kyoten_F") {
+				playerHP = 30;
+				enemyHP = 0;
+				m_Counter = 15;
+			} else if (this.gameObject.name == "kyoten_D") {
+				playerHP = 0;
+				enemyHP = 30;
+				m_Counter = -15;
+			} else {
+				playerHP = 15;
+				enemyHP = 15;
+			}
+		} else {
+			playerHP = 15;
+			enemyHP = 15;
+		}
 	}
 	
 	void Update()
@@ -57,13 +98,22 @@ public class BaseCamp : MonoBehaviour//担当者：永江
 		if (playerHP > 20f) {
 			GetComponent<Renderer> ().material.color = Color.blue;
 			if(this.gameObject.name == "kyoten_A"){
-				GameObject.Find("base_kyoten_A").tag = "kyoten";
+				GameObject.Find("base_kyoten_A").tag = "kariKyoten";
 			}
 			if(this.gameObject.name == "kyoten_B"){
-				GameObject.Find("base_kyoten_B").tag = "kyoten";
+				GameObject.Find("base_kyoten_B").tag = "kariKyoten";
 			}
 			if(this.gameObject.name == "kyoten_C"){
-				GameObject.Find("base_kyoten_C").tag = "kyoten";
+				GameObject.Find("base_kyoten_C").tag = "kariKyoten";
+			}
+			if(this.gameObject.name == "kyoten_D"){
+				GameObject.Find("base_kyoten_D").tag = "kariKyoten";
+			}
+			if(this.gameObject.name == "kyoten_E"){
+				GameObject.Find("base_kyoten_E").tag = "kariKyoten";
+			}
+			if(this.gameObject.name == "kyoten_F"){
+				GameObject.Find("base_kyoten_F").tag = "kariKyoten";
 			}
 			this.tag = "Place";
 		} else if (playerHP > 10f && playerHP < 20f) {
@@ -71,24 +121,54 @@ public class BaseCamp : MonoBehaviour//担当者：永江
 			this.tag = "Place";
 			if(this.gameObject.name == "kyoten_A"){
 				GameObject.Find("base_kyoten_A").tag = "Respawn";
+				isKyote_A = false;
 			}
 			if(this.gameObject.name == "kyoten_B"){
 				GameObject.Find("base_kyoten_B").tag = "Respawn";
+				isKyote_B = false;
 			}
 			if(this.gameObject.name == "kyoten_C"){
 				GameObject.Find("base_kyoten_C").tag = "Respawn";
+				isKyote_C = false;
 			}
-		} else if(playerHP > 0f && playerHP < 10f){
+			if(this.gameObject.name == "kyoten_D"){
+				GameObject.Find("base_kyoten_D").tag = "Respawn";
+				isKyote_D = false;
+			}
+			if(this.gameObject.name == "kyoten_E"){
+				GameObject.Find("base_kyoten_E").tag = "Respawn";
+				isKyote_E = false;
+			}
+			if(this.gameObject.name == "kyoten_F"){
+				GameObject.Find("base_kyoten_F").tag = "Respawn";
+				isKyote_F = false;
+			}
+		} else if(playerHP >= 0f && playerHP < 10f){
 			GetComponent<Renderer> ().material.color = Color.red;
 			this.tag = "Place";
 			if(this.gameObject.name == "kyoten_A"){
 				GameObject.Find("base_kyoten_A").tag = "Respawn";
+				isKyote_A = true;
 			}
 			if(this.gameObject.name == "kyoten_B"){
 				GameObject.Find("base_kyoten_B").tag = "Respawn";
+				isKyote_B = true;
 			}
 			if(this.gameObject.name == "kyoten_C"){
 				GameObject.Find("base_kyoten_C").tag = "Respawn";
+				isKyote_C = true;
+			}
+			if(this.gameObject.name == "kyoten_D"){
+				GameObject.Find("base_kyoten_D").tag = "Respawn";
+				isKyote_D = true;
+			}
+			if(this.gameObject.name == "kyoten_E"){
+				GameObject.Find("base_kyoten_E").tag = "Respawn";
+				isKyote_E = true;
+			}
+			if(this.gameObject.name == "kyoten_F"){
+				GameObject.Find("base_kyoten_F").tag = "Respawn";
+				isKyote_F = true;
 			}
 		}
         CampPointChecker();
@@ -203,6 +283,15 @@ public class BaseCamp : MonoBehaviour//担当者：永江
 			}
 			if(this.gameObject.name == "kyoten_C"){
 				GameObject.Find("base_kyoten_C").tag = "Respawn";
+			}
+			if(this.gameObject.name == "kyoten_D"){
+				GameObject.Find("base_kyoten_D").tag = "Respawn";
+			}
+			if(this.gameObject.name == "kyoten_E"){
+				GameObject.Find("base_kyoten_E").tag = "Respawn";
+			}
+			if(this.gameObject.name == "kyoten_F"){
+				GameObject.Find("base_kyoten_F").tag = "Respawn";
 			}
 		}
 

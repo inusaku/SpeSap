@@ -65,7 +65,13 @@ public class AttackArea_E : MonoBehaviour
                 kyoten = other.gameObject;
                 player = null;
                 InvokeRepeating("Attack", recast, recast);
-            }
+			}
+			if (other.gameObject.name == "P_kyoten_B")
+			{
+				kyoten = other.gameObject;
+				player = null;
+				InvokeRepeating("Attack", recast, recast);
+			}
         }
 
     }

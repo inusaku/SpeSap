@@ -3,21 +3,10 @@ using System.Collections;
 
 public class gameManager : MonoBehaviour {
 	static public bool isClear;
+	static public bool isFailed;
 	private float timer;
-	public GameObject stage01;
-	public GameObject stage02;
-	public GameObject stage03;
 
 	void Start(){
-		if(GameObject.Find("system").GetComponent<system>().stageNum == 1){
-			Instantiate(stage01);
-		}
-		if(GameObject.Find("system").GetComponent<system>().stageNum == 2){
-			Instantiate(stage02);
-		}
-		if(GameObject.Find("system").GetComponent<system>().stageNum == 3){
-			Instantiate(stage03);
-		}
 		timer = 0f;
 		isClear = false;
 	}
@@ -26,6 +15,12 @@ public class gameManager : MonoBehaviour {
 			timer += Time.deltaTime;
 			if(timer > 2f){
 				Application.LoadLevel("stageSelect");
+			}
+		}
+		if(isFailed == true){
+			timer += Time.deltaTime;
+			if(timer > 2f){
+				Application.LoadLevel("Title");
 			}
 		}
 	}

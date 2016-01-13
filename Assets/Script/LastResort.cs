@@ -9,7 +9,7 @@ public class LastResort : MonoBehaviour //LastResort == "最後の手段"の英�
     private bool m_UseCheck;            //動作開始用のbool型
     private float m_Counter;            //カウント用のfloat型(現在どれだけチャージされているか等のカウントに使う)
 
-    public ParticleSystem m_LR_Particle;//発動エフェクト用
+    public GameObject m_LR_Particle;//発動エフェクト用
     public GameObject m_LR_Hitter;      //Hit判定(切り札の当たり判定用)のGameObject
     public Image m_ChargeCircle;        //押している間チャージされるゲージを視覚的に確認できるようにするためのImage
     public int m_MaxTime;               //指定チャージ時間
@@ -20,7 +20,6 @@ public class LastResort : MonoBehaviour //LastResort == "最後の手段"の英�
         m_MouseOnOff = false;           //初期化
         m_UseCheck = false;             //初期化
         m_Counter = 0;                  //初期化
-		m_ChargeCircle = GameObject.Find ("ChargeCircle").GetComponent<Image>();
         m_LR_Hitter.SetActive(false);   //Hit判定は起動時までActive(true)にならないようにする
     }
 
@@ -99,8 +98,8 @@ public class LastResort : MonoBehaviour //LastResort == "最後の手段"の英�
     private void UseStart()             //起動時処理
     {
 
-        m_LR_Particle.Play();           //パーティクル(エフェクト)を起動
-        m_LR_Hitter.SetActive(true);    //Hit判定(を持ったGameObject)を起動
+		m_LR_Particle.SetActive(true);           //パーティクル(エフェクト)を起動
+//        m_LR_Hitter.SetActive(true);    //Hit判定(を持ったGameObject)を起動
         m_Counter = 3;                  //LastResortの持続時間をここで設定
     }
 
@@ -112,8 +111,7 @@ public class LastResort : MonoBehaviour //LastResort == "最後の手段"の英�
         {
             m_ChargeCircle.fillAmount = 0;//表示していたチャージ時間を0にする
             m_ChargeCircle.CrossFadeAlpha(1, 0, false);//チャージ時間のアルファ値を戻しておく
-            m_LR_Hitter.SetActive(false);//Hit判定を終了させる
-            m_LR_Particle.Stop();       //パーティクル(エフェクト)を止める
+//            m_LR_Hitter.SetActive(false);//Hit判定を終了させる
             m_End = true;               //実行内容終了
         }
         else                            //もし持続時間が残っているならば
