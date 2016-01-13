@@ -51,12 +51,8 @@ public class FriendOKMove : MonoBehaviour
         if (col.tag == "Enemy")
         {
             isPSW = true;
-			target1 = col.gameObject;
-<<<<<<< HEAD
             target1 = col.gameObject;
             target1 = col.gameObject;
-=======
->>>>>>> origin/master
         }
 
     }

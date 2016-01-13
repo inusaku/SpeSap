@@ -2,11 +2,7 @@
 using System.Collections;
 
 public class EnemyDMove : MonoBehaviour {
-<<<<<<< HEAD
-	//public GameObject target1;
-	//public GameObject target2;
-=======
->>>>>>> origin/master
+
 	public NavMeshAgent agent;
 	public Transform player;
 	private Transform m_NearKyoten;//public Transform target2;だったものを変更しました(永江.1月9日)
@@ -103,9 +99,5 @@ public class EnemyDMove : MonoBehaviour {
 		{
 			isEnabled = true;
 		}
-	}
-<<<<<<< HEAD
-    public Transform player;
-=======
->>>>>>> origin/master
+}
 }
