@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerGeneration : MonoBehaviour {
 	public GameObject player01;
 	public GameObject player02;
+	public GameObject player03;
 	public GameObject PlayerHP;
 	public GameObject menu;
 	public GameObject cost;
@@ -46,6 +47,18 @@ public class PlayerGeneration : MonoBehaviour {
 			cost.GetComponent<CostSC> ().cost -= player02.gameObject.GetComponent<PlayerStatus>().cost;
 		}
 
+	}
+	public void Player03(){
+		if (cost.GetComponent<CostSC> ().cost>=player03.gameObject.GetComponent<PlayerStatus>().cost) {
+			Vector3 pos = new Vector3 (x, kyotenpos.y, y);
+			this.GetComponent<AudioSource> ().PlayOneShot (up);
+			
+			Instantiate (player03, pos, player03.transform.rotation);
+			Instantiate (PlayerHP, new Vector3(10000,0,0), Quaternion.identity);
+			
+			cost.GetComponent<CostSC> ().cost -= player03.gameObject.GetComponent<PlayerStatus>().cost;
+		}
+		
 	}
 	public void close()
 	{
