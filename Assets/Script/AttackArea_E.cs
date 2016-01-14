@@ -48,7 +48,7 @@ public class AttackArea_E : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {

@@ -9,13 +9,17 @@ public class PlayerAction : MonoBehaviour {
 	public GameObject normalhitpar;
 	public string type;
 	public string enemytype;
+	private bool chast;
+	private float chastTimer;
+	public float timer;
 	// Use this for initialization
 	void Start () {
 		Atk = this.GetComponent<PlayerStatus> ().Atk;
-
+		chast = true;
 	}
 	void Attack()
 	{
+		chastTimer = timer;
 		if (type == "ATK" && enemytype == "SPEED") {
 			Damage (Atk*2);
 			Debug.Log ("HIT");
@@ -57,6 +61,10 @@ public class PlayerAction : MonoBehaviour {
 	}
 	void Update () {
 		type = GetComponent<UnitType> ().name;
+		chastTimer -= 1 * Time.deltaTime;
+		if (chastTimer <= 0) {
+			chast=true;
+		}
 	}
 	public void Damage(float damege)
 	{
@@ -70,23 +78,30 @@ public class PlayerAction : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter(Collider col)
+	void OnTriggerStay(Collider col)
 	{
-		if(col.gameObject.tag == "Enemy"){
-			Debug.Log("ENEMYHI");
-			enemyOb = col.gameObject;
-			kyotenOb=null;
-			InvokeRepeating ("Attack", recast,recast);
-			GetComponent<NavMeshAgent> ().speed = 0;
-			enemytype=col.GetComponent<UnitType>().name;
-		}
-		else if(col.gameObject.tag == "E_kyoten"){
-			kyotenOb = col.gameObject;
-			enemyOb=null;
-			InvokeRepeating ("Attack", recast,recast);
-			GetComponent<NavMeshAgent> ().speed = 0;
+		if (chast == true) {
+			if (col.gameObject.tag == "Enemy") {
+				chast=false;
+				Debug.Log ("ENEMYHI");
+				enemyOb = col.gameObject;
+				kyotenOb = null;
+				Attack();
+				GetComponent<NavMeshAgent> ().speed = 0;
+				enemytype = col.GetComponent<UnitType> ().name;
+
+			} else if (col.gameObject.tag == "E_kyoten") {
+				chast=false;
+				kyotenOb = col.gameObject;
+				enemyOb = null;
+				Attack();
+				GetComponent<NavMeshAgent> ().speed = 0;
+
+			}
 		}
 	}
+	
+
 	void OnTriggerExit(Collider col)
 	{
 		CancelInvoke("Attack");
