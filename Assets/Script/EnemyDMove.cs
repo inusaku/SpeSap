@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class EnemyDMove : MonoBehaviour {
+
 	public NavMeshAgent agent;
   	private GameObject m_TargetObject;
   	private Transform m_Target;
@@ -67,5 +68,5 @@ public class EnemyDMove : MonoBehaviour {
 		{
 			isEnabled = true;
 		}
-	}
+}
 }

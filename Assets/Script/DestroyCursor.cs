@@ -30,7 +30,8 @@ public class DestroyCursor : MonoBehaviour {
 		}
 
 	if (Input.GetMouseButtonUp (0)) {
-			Destroy(this.gameObject);
+			GetComponent<SphereCollider>().isTrigger=true;
+			Destroy(this.gameObject,0.1f);
 			dis = 0;
 		}
 	}
